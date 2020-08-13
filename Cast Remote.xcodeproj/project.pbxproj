@@ -1,0 +1,696 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		257DB366ED7E04D95E8280BD /* Pods_ChromeCast_Remote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 171D938A4F5BA5374CF82C5B /* Pods_ChromeCast_Remote.framework */; };
+		AA044FF624E3B6DA0013FAA3 /* ProvidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA044FF524E3B6DA0013FAA3 /* ProvidersGroupView.swift */; };
+		AA044FFA24E440860013FAA3 /* ProviderServiceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA044FF924E440850013FAA3 /* ProviderServiceListView.swift */; };
+		AA044FFE24E447090013FAA3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA044FFC24E447090013FAA3 /* Model.xcdatamodeld */; };
+		AA04502A24E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502224E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift */; };
+		AA04502B24E44DBE0013FAA3 /* Provider+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502324E44DBE0013FAA3 /* Provider+CoreDataProperties.swift */; };
+		AA04502C24E44DBE0013FAA3 /* Service+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502424E44DBE0013FAA3 /* Service+CoreDataClass.swift */; };
+		AA04502D24E44DBE0013FAA3 /* Service+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502524E44DBE0013FAA3 /* Service+CoreDataProperties.swift */; };
+		AA04502E24E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502624E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift */; };
+		AA04502F24E44DBE0013FAA3 /* Provider+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502724E44DBE0013FAA3 /* Provider+CoreDataClass.swift */; };
+		AA04503024E44DBE0013FAA3 /* App+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502824E44DBE0013FAA3 /* App+CoreDataProperties.swift */; };
+		AA04503124E44DBE0013FAA3 /* App+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502924E44DBE0013FAA3 /* App+CoreDataClass.swift */; };
+		AA04503524E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04503224E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift */; };
+		AA04503724E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04503424E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift */; };
+		AA04503924E462B50013FAA3 /* TwitchChannel+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04503824E462B50013FAA3 /* TwitchChannel+Model.swift */; };
+		AA04503F24E469580013FAA3 /* App+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04503E24E469580013FAA3 /* App+Model.swift */; };
+		AA04504124E474950013FAA3 /* Provider+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504024E474950013FAA3 /* Provider+Model.swift */; };
+		AA04504324E479180013FAA3 /* Service+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504224E479180013FAA3 /* Service+Model.swift */; };
+		AA04504524E481110013FAA3 /* ProviderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504424E481110013FAA3 /* ProviderRowViewModel.swift */; };
+		AA04504824E4A99B0013FAA3 /* ProviderServiceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504724E4A99B0013FAA3 /* ProviderServiceRow.swift */; };
+		AA04504A24E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504924E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift */; };
+		AA04504C24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504B24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift */; };
+		AAA689D424D7E37D00D0AA69 /* twitch_channels.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA689D324D7E37D00D0AA69 /* twitch_channels.json */; };
+		AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */; };
+		AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */; };
+		AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7EB24D21D0500A57ED1 /* ContentView.swift */; };
+		AADFC7EE24D21D0900A57ED1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AADFC7ED24D21D0900A57ED1 /* Assets.xcassets */; };
+		AADFC7F124D21D0900A57ED1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AADFC7F024D21D0900A57ED1 /* Preview Assets.xcassets */; };
+		AADFC7F424D21D0900A57ED1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AADFC7F224D21D0900A57ED1 /* LaunchScreen.storyboard */; };
+		AADFC7FF24D24DF200A57ED1 /* Castable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7FE24D24DF200A57ED1 /* Castable.swift */; };
+		AADFC80624D2599B00A57ED1 /* twitch_streams.json in Resources */ = {isa = PBXBuildFile; fileRef = AADFC80524D2599B00A57ED1 /* twitch_streams.json */; };
+		AADFC83C24D380BA00A57ED1 /* URLRequest+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC83324D380BA00A57ED1 /* URLRequest+Service.swift */; };
+		AAE4EE2924DF9F8300BDA4B6 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2024DF9F8200BDA4B6 /* Accelerate.framework */; };
+		AAE4EE2A24DF9F8300BDA4B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2124DF9F8200BDA4B6 /* CoreGraphics.framework */; };
+		AAE4EE2B24DF9F8300BDA4B6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2224DF9F8200BDA4B6 /* CFNetwork.framework */; };
+		AAE4EE2C24DF9F8300BDA4B6 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2324DF9F8200BDA4B6 /* CoreBluetooth.framework */; };
+		AAE4EE2D24DF9F8300BDA4B6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2424DF9F8200BDA4B6 /* AVFoundation.framework */; };
+		AAE4EE2E24DF9F8300BDA4B6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2524DF9F8200BDA4B6 /* CoreData.framework */; };
+		AAE4EE2F24DF9F8300BDA4B6 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2624DF9F8200BDA4B6 /* CoreMedia.framework */; };
+		AAE4EE3024DF9F8300BDA4B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2724DF9F8300BDA4B6 /* AudioToolbox.framework */; };
+		AAE4EE3124DF9F8300BDA4B6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE4EE2824DF9F8300BDA4B6 /* CoreText.framework */; };
+		AAE4EE3524E0C4C900BDA4B6 /* TwitchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE3424E0C4C900BDA4B6 /* TwitchService.swift */; };
+		AAE4EE3D24E0EF0A00BDA4B6 /* ProviderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE3C24E0EF0A00BDA4B6 /* ProviderListView.swift */; };
+		AAE4EE3F24E0F0B500BDA4B6 /* ProviderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */; };
+		AAE4EE4624E24B9100BDA4B6 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4524E24B9100BDA4B6 /* Reducer.swift */; };
+		AAE4EE4824E2545B00BDA4B6 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4724E2545B00BDA4B6 /* Store.swift */; };
+		AAE4EE4A24E25B1C00BDA4B6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */; };
+		AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */; };
+		AAE4EE5224E2F57E00BDA4B6 /* ProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE5124E2F57E00BDA4B6 /* ProviderService.swift */; };
+		AAE4EE5424E30A8000BDA4B6 /* DemoJSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE5324E30A8000BDA4B6 /* DemoJSONLoader.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		171D938A4F5BA5374CF82C5B /* Pods_ChromeCast_Remote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChromeCast_Remote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C4F35AFCCF5E1D50707C0DB /* Pods-ChromeCast Remote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCast Remote.release.xcconfig"; path = "Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote.release.xcconfig"; sourceTree = "<group>"; };
+		41ADF56E65B96BE224179D9C /* Pods-ChromeCast Remote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCast Remote.debug.xcconfig"; path = "Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote.debug.xcconfig"; sourceTree = "<group>"; };
+		AA044FF524E3B6DA0013FAA3 /* ProvidersGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersGroupView.swift; sourceTree = "<group>"; };
+		AA044FF924E440850013FAA3 /* ProviderServiceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServiceListView.swift; sourceTree = "<group>"; };
+		AA044FFD24E447090013FAA3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		AA04502224E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProviderGroup+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA04502324E44DBE0013FAA3 /* Provider+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Provider+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA04502424E44DBE0013FAA3 /* Service+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Service+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AA04502524E44DBE0013FAA3 /* Service+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Service+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA04502624E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProviderGroup+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AA04502724E44DBE0013FAA3 /* Provider+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Provider+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AA04502824E44DBE0013FAA3 /* App+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "App+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA04502924E44DBE0013FAA3 /* App+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "App+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AA04503224E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitchChannel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AA04503424E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitchChannel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA04503824E462B50013FAA3 /* TwitchChannel+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitchChannel+Model.swift"; sourceTree = "<group>"; };
+		AA04503E24E469580013FAA3 /* App+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Model.swift"; sourceTree = "<group>"; };
+		AA04504024E474950013FAA3 /* Provider+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Provider+Model.swift"; sourceTree = "<group>"; };
+		AA04504224E479180013FAA3 /* Service+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Service+Model.swift"; sourceTree = "<group>"; };
+		AA04504424E481110013FAA3 /* ProviderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderRowViewModel.swift; sourceTree = "<group>"; };
+		AA04504724E4A99B0013FAA3 /* ProviderServiceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServiceRow.swift; sourceTree = "<group>"; };
+		AA04504924E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServiceRowViewModel.swift; sourceTree = "<group>"; };
+		AA04504B24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServiceListViewModel.swift; sourceTree = "<group>"; };
+		AA04504D24E4EA180013FAA3 /* Cast Remote.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Cast Remote.entitlements"; sourceTree = "<group>"; };
+		AAA689D324D7E37D00D0AA69 /* twitch_channels.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = twitch_channels.json; sourceTree = "<group>"; };
+		AADFC7E424D21D0500A57ED1 /* Cast Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		AADFC7EB24D21D0500A57ED1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AADFC7ED24D21D0900A57ED1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AADFC7F024D21D0900A57ED1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AADFC7F324D21D0900A57ED1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AADFC7F524D21D0900A57ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AADFC7FE24D24DF200A57ED1 /* Castable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Castable.swift; sourceTree = "<group>"; };
+		AADFC80524D2599B00A57ED1 /* twitch_streams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = twitch_streams.json; sourceTree = "<group>"; };
+		AADFC83324D380BA00A57ED1 /* URLRequest+Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Service.swift"; sourceTree = "<group>"; };
+		AAE4EE2024DF9F8200BDA4B6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		AAE4EE2124DF9F8200BDA4B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AAE4EE2224DF9F8200BDA4B6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		AAE4EE2324DF9F8200BDA4B6 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		AAE4EE2424DF9F8200BDA4B6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		AAE4EE2524DF9F8200BDA4B6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AAE4EE2624DF9F8200BDA4B6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		AAE4EE2724DF9F8300BDA4B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AAE4EE2824DF9F8300BDA4B6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		AAE4EE3424E0C4C900BDA4B6 /* TwitchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchService.swift; sourceTree = "<group>"; };
+		AAE4EE3C24E0EF0A00BDA4B6 /* ProviderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderListView.swift; sourceTree = "<group>"; };
+		AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderRow.swift; sourceTree = "<group>"; };
+		AAE4EE4524E24B9100BDA4B6 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		AAE4EE4724E2545B00BDA4B6 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderListViewModel.swift; sourceTree = "<group>"; };
+		AAE4EE5124E2F57E00BDA4B6 /* ProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderService.swift; sourceTree = "<group>"; };
+		AAE4EE5324E30A8000BDA4B6 /* DemoJSONLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoJSONLoader.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AADFC7E124D21D0500A57ED1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAE4EE2F24DF9F8300BDA4B6 /* CoreMedia.framework in Frameworks */,
+				AAE4EE2A24DF9F8300BDA4B6 /* CoreGraphics.framework in Frameworks */,
+				AAE4EE3124DF9F8300BDA4B6 /* CoreText.framework in Frameworks */,
+				257DB366ED7E04D95E8280BD /* Pods_ChromeCast_Remote.framework in Frameworks */,
+				AAE4EE2E24DF9F8300BDA4B6 /* CoreData.framework in Frameworks */,
+				AAE4EE2D24DF9F8300BDA4B6 /* AVFoundation.framework in Frameworks */,
+				AAE4EE3024DF9F8300BDA4B6 /* AudioToolbox.framework in Frameworks */,
+				AAE4EE2B24DF9F8300BDA4B6 /* CFNetwork.framework in Frameworks */,
+				AAE4EE2C24DF9F8300BDA4B6 /* CoreBluetooth.framework in Frameworks */,
+				AAE4EE2924DF9F8300BDA4B6 /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA044FFB24E4468E0013FAA3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */,
+				AA04504B24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift */,
+				AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA04504624E481230013FAA3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA04504424E481110013FAA3 /* ProviderRowViewModel.swift */,
+				AA04504924E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AAA689D524D850B300D0AA69 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AADFC7FE24D24DF200A57ED1 /* Castable.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AADFC7DB24D21D0500A57ED1 = {
+			isa = PBXGroup;
+			children = (
+				AADFC7E624D21D0500A57ED1 /* Cast Remote */,
+				AADFC7E524D21D0500A57ED1 /* Products */,
+				EA1D0767F13A6110E09F4994 /* Pods */,
+				E55CA51D2FEC1F5B7439545D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AADFC7E524D21D0500A57ED1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AADFC7E424D21D0500A57ED1 /* Cast Remote.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AADFC7E624D21D0500A57ED1 /* Cast Remote */ = {
+			isa = PBXGroup;
+			children = (
+				AA04504D24E4EA180013FAA3 /* Cast Remote.entitlements */,
+				AAE4EE4424E24B6100BDA4B6 /* Redux */,
+				AADFC82B24D380B900A57ED1 /* Services */,
+				AADFC7FD24D24C7E00A57ED1 /* Models */,
+				AADFC80024D2529200A57ED1 /* Views */,
+				AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */,
+				AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */,
+				AADFC7EB24D21D0500A57ED1 /* ContentView.swift */,
+				AADFC7ED24D21D0900A57ED1 /* Assets.xcassets */,
+				AADFC7F224D21D0900A57ED1 /* LaunchScreen.storyboard */,
+				AADFC7F524D21D0900A57ED1 /* Info.plist */,
+				AADFC7EF24D21D0900A57ED1 /* Preview Content */,
+			);
+			path = "Cast Remote";
+			sourceTree = "<group>";
+		};
+		AADFC7EF24D21D0900A57ED1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				AADFC7F024D21D0900A57ED1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AADFC7FD24D24C7E00A57ED1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AAA689D524D850B300D0AA69 /* Data */,
+				AA04502724E44DBE0013FAA3 /* Provider+CoreDataClass.swift */,
+				AA04502324E44DBE0013FAA3 /* Provider+CoreDataProperties.swift */,
+				AA04504024E474950013FAA3 /* Provider+Model.swift */,
+				AA04503224E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift */,
+				AA04503424E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift */,
+				AA04503824E462B50013FAA3 /* TwitchChannel+Model.swift */,
+				AA04502924E44DBE0013FAA3 /* App+CoreDataClass.swift */,
+				AA04502824E44DBE0013FAA3 /* App+CoreDataProperties.swift */,
+				AA04503E24E469580013FAA3 /* App+Model.swift */,
+				AA04502424E44DBE0013FAA3 /* Service+CoreDataClass.swift */,
+				AA04502524E44DBE0013FAA3 /* Service+CoreDataProperties.swift */,
+				AA04504224E479180013FAA3 /* Service+Model.swift */,
+				AA04502624E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift */,
+				AA04502224E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift */,
+				AA044FFC24E447090013FAA3 /* Model.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AADFC80024D2529200A57ED1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA044FFB24E4468E0013FAA3 /* ViewModels */,
+				AADFC80A24D2874C00A57ED1 /* Rows */,
+				AAE4EE3C24E0EF0A00BDA4B6 /* ProviderListView.swift */,
+				AA044FF924E440850013FAA3 /* ProviderServiceListView.swift */,
+				AA044FF524E3B6DA0013FAA3 /* ProvidersGroupView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AADFC80724D25D4B00A57ED1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AADFC80524D2599B00A57ED1 /* twitch_streams.json */,
+				AAA689D324D7E37D00D0AA69 /* twitch_channels.json */,
+				AAE4EE5324E30A8000BDA4B6 /* DemoJSONLoader.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AADFC80A24D2874C00A57ED1 /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				AA04504624E481230013FAA3 /* ViewModels */,
+				AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */,
+				AA04504724E4A99B0013FAA3 /* ProviderServiceRow.swift */,
+			);
+			path = Rows;
+			sourceTree = "<group>";
+		};
+		AADFC82B24D380B900A57ED1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AADFC80724D25D4B00A57ED1 /* Resources */,
+				AAE4EE3424E0C4C900BDA4B6 /* TwitchService.swift */,
+				AAE4EE5124E2F57E00BDA4B6 /* ProviderService.swift */,
+				AADFC83324D380BA00A57ED1 /* URLRequest+Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AAE4EE4424E24B6100BDA4B6 /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				AAE4EE4524E24B9100BDA4B6 /* Reducer.swift */,
+				AAE4EE4724E2545B00BDA4B6 /* Store.swift */,
+			);
+			path = Redux;
+			sourceTree = "<group>";
+		};
+		E55CA51D2FEC1F5B7439545D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAE4EE2024DF9F8200BDA4B6 /* Accelerate.framework */,
+				AAE4EE2724DF9F8300BDA4B6 /* AudioToolbox.framework */,
+				AAE4EE2424DF9F8200BDA4B6 /* AVFoundation.framework */,
+				AAE4EE2224DF9F8200BDA4B6 /* CFNetwork.framework */,
+				AAE4EE2324DF9F8200BDA4B6 /* CoreBluetooth.framework */,
+				AAE4EE2524DF9F8200BDA4B6 /* CoreData.framework */,
+				AAE4EE2124DF9F8200BDA4B6 /* CoreGraphics.framework */,
+				AAE4EE2624DF9F8200BDA4B6 /* CoreMedia.framework */,
+				AAE4EE2824DF9F8300BDA4B6 /* CoreText.framework */,
+				171D938A4F5BA5374CF82C5B /* Pods_ChromeCast_Remote.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA1D0767F13A6110E09F4994 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41ADF56E65B96BE224179D9C /* Pods-ChromeCast Remote.debug.xcconfig */,
+				1C4F35AFCCF5E1D50707C0DB /* Pods-ChromeCast Remote.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AADFC7E324D21D0500A57ED1 /* Cast Remote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AADFC7F824D21D0900A57ED1 /* Build configuration list for PBXNativeTarget "Cast Remote" */;
+			buildPhases = (
+				D94E1102CCACE75A5698B3B5 /* [CP] Check Pods Manifest.lock */,
+				AADFC7E024D21D0500A57ED1 /* Sources */,
+				AADFC7E124D21D0500A57ED1 /* Frameworks */,
+				AADFC7E224D21D0500A57ED1 /* Resources */,
+				70647EA2D1CAF892FFD1C201 /* [CP] Embed Pods Frameworks */,
+				FB6A0EC645315C1B588570AB /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cast Remote";
+			productName = "ChromeCast Remote";
+			productReference = AADFC7E424D21D0500A57ED1 /* Cast Remote.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AADFC7DC24D21D0500A57ED1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = Schelterstudios;
+				TargetAttributes = {
+					AADFC7E324D21D0500A57ED1 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = AADFC7DF24D21D0500A57ED1 /* Build configuration list for PBXProject "Cast Remote" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AADFC7DB24D21D0500A57ED1;
+			productRefGroup = AADFC7E524D21D0500A57ED1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AADFC7E324D21D0500A57ED1 /* Cast Remote */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AADFC7E224D21D0500A57ED1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA689D424D7E37D00D0AA69 /* twitch_channels.json in Resources */,
+				AADFC7F424D21D0900A57ED1 /* LaunchScreen.storyboard in Resources */,
+				AADFC7F124D21D0900A57ED1 /* Preview Assets.xcassets in Resources */,
+				AADFC80624D2599B00A57ED1 /* twitch_streams.json in Resources */,
+				AADFC7EE24D21D0900A57ED1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		70647EA2D1CAF892FFD1C201 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D94E1102CCACE75A5698B3B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChromeCast Remote-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB6A0EC645315C1B588570AB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AADFC7E024D21D0500A57ED1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA04503024E44DBE0013FAA3 /* App+CoreDataProperties.swift in Sources */,
+				AA04502E24E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift in Sources */,
+				AA04502C24E44DBE0013FAA3 /* Service+CoreDataClass.swift in Sources */,
+				AA04503924E462B50013FAA3 /* TwitchChannel+Model.swift in Sources */,
+				AA044FF624E3B6DA0013FAA3 /* ProvidersGroupView.swift in Sources */,
+				AAE4EE4624E24B9100BDA4B6 /* Reducer.swift in Sources */,
+				AA044FFA24E440860013FAA3 /* ProviderServiceListView.swift in Sources */,
+				AA04502F24E44DBE0013FAA3 /* Provider+CoreDataClass.swift in Sources */,
+				AAE4EE4824E2545B00BDA4B6 /* Store.swift in Sources */,
+				AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */,
+				AA04503F24E469580013FAA3 /* App+Model.swift in Sources */,
+				AA04502B24E44DBE0013FAA3 /* Provider+CoreDataProperties.swift in Sources */,
+				AAE4EE4A24E25B1C00BDA4B6 /* ViewModel.swift in Sources */,
+				AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */,
+				AA04504A24E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift in Sources */,
+				AADFC83C24D380BA00A57ED1 /* URLRequest+Service.swift in Sources */,
+				AAE4EE3F24E0F0B500BDA4B6 /* ProviderRow.swift in Sources */,
+				AA04503724E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift in Sources */,
+				AA044FFE24E447090013FAA3 /* Model.xcdatamodeld in Sources */,
+				AA04502D24E44DBE0013FAA3 /* Service+CoreDataProperties.swift in Sources */,
+				AA04504524E481110013FAA3 /* ProviderRowViewModel.swift in Sources */,
+				AA04504124E474950013FAA3 /* Provider+Model.swift in Sources */,
+				AAE4EE5224E2F57E00BDA4B6 /* ProviderService.swift in Sources */,
+				AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */,
+				AAE4EE3524E0C4C900BDA4B6 /* TwitchService.swift in Sources */,
+				AA04504324E479180013FAA3 /* Service+Model.swift in Sources */,
+				AA04504C24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift in Sources */,
+				AA04503524E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift in Sources */,
+				AA04503124E44DBE0013FAA3 /* App+CoreDataClass.swift in Sources */,
+				AADFC7FF24D24DF200A57ED1 /* Castable.swift in Sources */,
+				AA04504824E4A99B0013FAA3 /* ProviderServiceRow.swift in Sources */,
+				AAE4EE3D24E0EF0A00BDA4B6 /* ProviderListView.swift in Sources */,
+				AA04502A24E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift in Sources */,
+				AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */,
+				AAE4EE5424E30A8000BDA4B6 /* DemoJSONLoader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AADFC7F224D21D0900A57ED1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AADFC7F324D21D0900A57ED1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AADFC7F624D21D0900A57ED1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AADFC7F724D21D0900A57ED1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AADFC7F924D21D0900A57ED1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41ADF56E65B96BE224179D9C /* Pods-ChromeCast Remote.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Cast Remote/Cast Remote.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Cast Remote/Preview Content\"";
+				DEVELOPMENT_TEAM = LUTA3PBZC8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Cast Remote/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.schelterstudios.CastRemote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AADFC7FA24D21D0900A57ED1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C4F35AFCCF5E1D50707C0DB /* Pods-ChromeCast Remote.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Cast Remote/Cast Remote.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Cast Remote/Preview Content\"";
+				DEVELOPMENT_TEAM = LUTA3PBZC8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Cast Remote/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.schelterstudios.CastRemote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AADFC7DF24D21D0500A57ED1 /* Build configuration list for PBXProject "Cast Remote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AADFC7F624D21D0900A57ED1 /* Debug */,
+				AADFC7F724D21D0900A57ED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AADFC7F824D21D0900A57ED1 /* Build configuration list for PBXNativeTarget "Cast Remote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AADFC7F924D21D0900A57ED1 /* Debug */,
+				AADFC7FA24D21D0900A57ED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AA044FFC24E447090013FAA3 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AA044FFD24E447090013FAA3 /* Model.xcdatamodel */,
+			);
+			currentVersion = AA044FFD24E447090013FAA3 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AADFC7DC24D21D0500A57ED1 /* Project object */;
+}
