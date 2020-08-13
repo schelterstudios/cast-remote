@@ -51,8 +51,6 @@
 		AAE4EE3524E0C4C900BDA4B6 /* TwitchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE3424E0C4C900BDA4B6 /* TwitchService.swift */; };
 		AAE4EE3D24E0EF0A00BDA4B6 /* ProviderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE3C24E0EF0A00BDA4B6 /* ProviderListView.swift */; };
 		AAE4EE3F24E0F0B500BDA4B6 /* ProviderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */; };
-		AAE4EE4624E24B9100BDA4B6 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4524E24B9100BDA4B6 /* Reducer.swift */; };
-		AAE4EE4824E2545B00BDA4B6 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4724E2545B00BDA4B6 /* Store.swift */; };
 		AAE4EE4A24E25B1C00BDA4B6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */; };
 		AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */; };
 		AAE4EE5224E2F57E00BDA4B6 /* ProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE5124E2F57E00BDA4B6 /* ProviderService.swift */; };
@@ -109,8 +107,6 @@
 		AAE4EE3424E0C4C900BDA4B6 /* TwitchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchService.swift; sourceTree = "<group>"; };
 		AAE4EE3C24E0EF0A00BDA4B6 /* ProviderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderListView.swift; sourceTree = "<group>"; };
 		AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderRow.swift; sourceTree = "<group>"; };
-		AAE4EE4524E24B9100BDA4B6 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
-		AAE4EE4724E2545B00BDA4B6 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderListViewModel.swift; sourceTree = "<group>"; };
 		AAE4EE5124E2F57E00BDA4B6 /* ProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderService.swift; sourceTree = "<group>"; };
@@ -187,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				AA04504D24E4EA180013FAA3 /* Cast Remote.entitlements */,
-				AAE4EE4424E24B6100BDA4B6 /* Redux */,
 				AADFC82B24D380B900A57ED1 /* Services */,
 				AADFC7FD24D24C7E00A57ED1 /* Models */,
 				AADFC80024D2529200A57ED1 /* Views */,
@@ -274,15 +269,6 @@
 				AADFC83324D380BA00A57ED1 /* URLRequest+Service.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		AAE4EE4424E24B6100BDA4B6 /* Redux */ = {
-			isa = PBXGroup;
-			children = (
-				AAE4EE4524E24B9100BDA4B6 /* Reducer.swift */,
-				AAE4EE4724E2545B00BDA4B6 /* Store.swift */,
-			);
-			path = Redux;
 			sourceTree = "<group>";
 		};
 		E55CA51D2FEC1F5B7439545D /* Frameworks */ = {
@@ -451,10 +437,8 @@
 				AA04502C24E44DBE0013FAA3 /* Service+CoreDataClass.swift in Sources */,
 				AA04503924E462B50013FAA3 /* TwitchChannel+Model.swift in Sources */,
 				AA044FF624E3B6DA0013FAA3 /* ProvidersGroupView.swift in Sources */,
-				AAE4EE4624E24B9100BDA4B6 /* Reducer.swift in Sources */,
 				AA044FFA24E440860013FAA3 /* ProviderServiceListView.swift in Sources */,
 				AA04502F24E44DBE0013FAA3 /* Provider+CoreDataClass.swift in Sources */,
-				AAE4EE4824E2545B00BDA4B6 /* Store.swift in Sources */,
 				AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */,
 				AA04503F24E469580013FAA3 /* App+Model.swift in Sources */,
 				AA04502B24E44DBE0013FAA3 /* Provider+CoreDataProperties.swift in Sources */,
