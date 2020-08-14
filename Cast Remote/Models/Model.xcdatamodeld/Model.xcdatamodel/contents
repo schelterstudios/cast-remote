@@ -11,20 +11,31 @@
         <attribute name="displayName" attributeType="String"/>
         <attribute name="thumbRAW" attributeType="String"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProviderGroup" inverseName="providers" inverseEntity="ProviderGroup"/>
-        <relationship name="platform" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Platform" inverseName="providers" inverseEntity="Platform"/>
+        <relationship name="platform" maxCount="1" deletionRule="Nullify" destinationEntity="Platform" inverseName="providers" inverseEntity="Platform"/>
     </entity>
     <entity name="ProviderGroup" representedClassName="ProviderGroup" syncable="YES" codeGenerationType="class">
-        <relationship name="app" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="App" inverseName="pinned" inverseEntity="App"/>
+        <relationship name="app" maxCount="1" deletionRule="Nullify" destinationEntity="App" inverseName="pinned" inverseEntity="App"/>
         <relationship name="providers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Provider" inverseName="groups" inverseEntity="Provider"/>
     </entity>
     <entity name="TwitchChannel" representedClassName="TwitchChannel" parentEntity="Provider" syncable="YES" codeGenerationType="class">
         <attribute name="channelID" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="urlRAW" attributeType="String"/>
+        <relationship name="stream" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TwitchStream" inverseName="channel" inverseEntity="TwitchStream"/>
+    </entity>
+    <entity name="TwitchStream" representedClassName="TwitchStream" syncable="YES" codeGenerationType="class">
+        <attribute name="game" attributeType="String"/>
+        <attribute name="previewRAW" attributeType="String"/>
+        <attribute name="streamID" attributeType="String"/>
+        <attribute name="viewCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TwitchChannel" inverseName="stream" inverseEntity="TwitchChannel"/>
     </entity>
     <elements>
         <element name="App" positionX="-1.40234375" positionY="-373.53125" width="128" height="58"/>
+        <element name="Platform" positionX="-329.92578125" positionY="-91.21484375" width="128" height="73"/>
         <element name="Provider" positionX="-99.03125" positionY="-60.51953125" width="128" height="103"/>
         <element name="ProviderGroup" positionX="83.58203125" positionY="-151.04296875" width="128" height="73"/>
-        <element name="Platform" positionX="-329.92578125" positionY="-91.21484375" width="128" height="73"/>
-        <element name="TwitchChannel" positionX="-107.90625" positionY="126.2890625" width="128" height="58"/>
+        <element name="TwitchChannel" positionX="-107.90625" positionY="126.2890625" width="128" height="103"/>
+        <element name="TwitchStream" positionX="-167.94921875" positionY="-259.98046875" width="128" height="118"/>
     </elements>
 </model>

@@ -42,9 +42,6 @@ struct ContentView: View {
     private var requestHandler: GCKRequestDelegate = RequestHandler()
     @State private var selection = 0
     
-    //@ObservedObject var pinnedModel = PinnedProvidersViewModel(services: [TwitchService()]).eraseToAnyViewModel()
-    
- 
     var body: some View {
         TabView(selection: $selection){
             //TwitchChannelsSheet()
@@ -62,22 +59,27 @@ struct ContentView: View {
             .font(.title)
             .tabItem {
                 VStack {
-                    Image("first")
-                    Text("First")
+                    Image(systemName: "play.rectangle.fill")
+                    Text("Live")
                 }
             }.tag(0)
             ProviderGroupView()
-                //.environmentObject(pinnedModel)
+                .environmentObject(ProviderGroupViewModel(title: "Watchlist",
+                                                          group: App.shared.pinned!).eraseToAnyViewModel())
             .tabItem {
                 VStack {
-                    Image("second")
-                    Text("Second")
+                    Image(systemName: "eye.fill")
+                    Text("Watchlist")
                 }
             }.tag(1)
         }
     }
     
     func castMedia() {
+        let streams = DemoJSON().twitchStreams
+        return
+        
+        
         let metadata = GCKMediaMetadata()
         metadata.setString("Big Buck Bunny (2008)", forKey: kGCKMetadataKeyTitle)
         metadata.setString("Big Buck Bunny tells the story of a giant rabbit with a heart bigger than " +
@@ -89,7 +91,10 @@ struct ContentView: View {
                                    width: 480,
                                    height: 360))
         
-        let url = URL.init(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+        // https://pwn.sh/tools/streamapi.py?url=twitch.tv/glermz
+        
+        let url = URL(string: "https://video-weaver.fra05.hls.ttvnw.net/v1/playlist/Cs0DubWIsZHHLM3Nj-EKQkIBMUzx8OHcl7kXigaLR5ZVEvC7lXKnPXg2fcYfqHybL0Ir6m-1J472ethM52Lb7D8lzGS1FkgL_Ce9cm8xeRTpT1FRwa09FAPVZbGikgFq6A57UUe6RqoU0vioE0mykBxwkG8LXAzecg3qrufPTqWuzbdceuvZSzcKGF0gKo9yuCtF_GWsXKODxYkfG0zqg-UvAVVZbOkvzFCj2dzGwRLF7zdw4g7pIjlFJAyMyu5QwpcRPk8Ui-LER5qqGi8wTweqldGFbntD2rDQYBuUTuYg2dJRpfkRA-mmmyvU9AdurPb_IMBXmhpTjawXzmb7I-aY9YobeGrOtIlnBpex8oWubuy9841W_-Td2IWW6rfT4zsnbLa74COCD19t3i9XYEg2_T8dJXinhMHhqOIG1J9k5gER0-cswn73Tdt8_1XGCw7qv7JrobOwbKhr-ViXT0GIcf00Y7aJvhcSBupQSgfmj6N5mpRKHNb4biY8v_jTgIAf41BYHCrBBzPTxLGHti7UGzq9MZdkXe3yXwKxSAEcnQcRlPQbCPNfCFbnMifpYOEA8x0ya8oBZzuTlRirnkHlPGFGVjfte22DkER0ay4SEMcPKMS9L0aEGbPW74pYCggaDP0JsgDs_ZnnifK08g.m3u8")
+        //let url = URL.init(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
         guard let mediaURL = url else {
           print("invalid mediaURL")
           return

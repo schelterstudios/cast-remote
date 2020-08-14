@@ -7,6 +7,21 @@
 //
 
 import Foundation
+import SwiftUI
+
+extension PlatformType {
+    var themeColor: Color {
+        switch self {
+        case .twitch : return Color("twitch")
+        }
+    }
+    
+    var icon: UIImage {
+        switch self {
+        case .twitch : return #imageLiteral(resourceName: "twitch.icon")
+        }
+    }
+}
 
 class ProviderRowViewModel: ObservableObject, Identifiable {
     
@@ -24,6 +39,14 @@ class ProviderRowViewModel: ObservableObject, Identifiable {
         if let provider = self.provider { return provider.thumbURL }
         if let dto = demoDTO as? TwitchChannelDTO { return URL(string: dto.thumbRAW) }
         return nil
+    }
+    
+    var themeColor: Color {
+        provider?.platform?.type.themeColor ?? .black
+    }
+    
+    var icon: UIImage? {
+        provider?.platform?.type.icon
     }
     
     var source: Any? { provider ?? demoDTO }

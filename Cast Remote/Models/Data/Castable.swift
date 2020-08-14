@@ -7,34 +7,31 @@
 //
 
 import Foundation
-
-protocol Castable {
+/*
+protocol Castable_old {
     var path: String { get }
-    var name: String { get }
-    var thumbURL: URL? { get }
+    var title: String { get }
+    var subtitle: String { get }
+    var previewURL: URL? { get }
 }
 
-extension Castable where Self:Equatable {
-    static func == (lhs: Castable, rhs: Castable) -> Bool {
-        return lhs.path == rhs.path
-    }
-}
-
-struct TwitchStream: Castable, Codable {
+struct TwitchStream: Castable_old, Codable {
     
     var path: String { "https://www.twitch.tv/"+username }
-    var name: String { username }// + " playing " + game }
-    var thumbURL: URL? { URL(string: thumbURLRaw) }
+    var title: String { username }// + " playing " + game }
+    var subtitle: String
+    var previewURL: URL? { URL(string: thumbURLRaw) }
     
-    var id: String
     var thumbURLRaw: String
     var username: String
-    //var game: String
+    var game: String
+    
+    //var provider:
     
     enum CodingKeys: String, CodingKey {
         case id
-        case thumbURLRaw = "thumbnail_url"
-        case username = "user_name"
-        //case game
+        case thumbRAW = "thumbnail_url"
+        case game
     }
 }
+*/

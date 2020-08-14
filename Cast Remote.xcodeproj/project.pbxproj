@@ -20,6 +20,11 @@
 		AA04504A24E4AAC00013FAA3 /* PlatformRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504924E4AAC00013FAA3 /* PlatformRowViewModel.swift */; };
 		AA04504C24E4BAC30013FAA3 /* PlatformListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */; };
 		AAA689D424D7E37D00D0AA69 /* twitch_channels.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA689D324D7E37D00D0AA69 /* twitch_channels.json */; };
+		AAAFECC724E6DD5100CD3AA5 /* ProviderGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECC624E6DD5100CD3AA5 /* ProviderGroupViewModel.swift */; };
+		AAAFECC924E707E000CD3AA5 /* ProviderGroup+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECC824E707E000CD3AA5 /* ProviderGroup+Model.swift */; };
+		AAAFECCB24E7326400CD3AA5 /* TwitchStream+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECCA24E7326400CD3AA5 /* TwitchStream+Model.swift */; };
+		AAAFECCD24E7491500CD3AA5 /* CastableRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECCC24E7491400CD3AA5 /* CastableRowViewModel.swift */; };
+		AAAFECCF24E74D7900CD3AA5 /* CastableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECCE24E74D7800CD3AA5 /* CastableRow.swift */; };
 		AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */; };
 		AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */; };
 		AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7EB24D21D0500A57ED1 /* ContentView.swift */; };
@@ -64,6 +69,11 @@
 		AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformListViewModel.swift; sourceTree = "<group>"; };
 		AA04504D24E4EA180013FAA3 /* Cast Remote.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Cast Remote.entitlements"; sourceTree = "<group>"; };
 		AAA689D324D7E37D00D0AA69 /* twitch_channels.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = twitch_channels.json; sourceTree = "<group>"; };
+		AAAFECC624E6DD5100CD3AA5 /* ProviderGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderGroupViewModel.swift; sourceTree = "<group>"; };
+		AAAFECC824E707E000CD3AA5 /* ProviderGroup+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProviderGroup+Model.swift"; sourceTree = "<group>"; };
+		AAAFECCA24E7326400CD3AA5 /* TwitchStream+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitchStream+Model.swift"; sourceTree = "<group>"; };
+		AAAFECCC24E7491400CD3AA5 /* CastableRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastableRowViewModel.swift; sourceTree = "<group>"; };
+		AAAFECCE24E74D7800CD3AA5 /* CastableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastableRow.swift; sourceTree = "<group>"; };
 		AADFC7E424D21D0500A57ED1 /* Cast Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +129,7 @@
 			children = (
 				AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */,
 				AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */,
+				AAAFECC624E6DD5100CD3AA5 /* ProviderGroupViewModel.swift */,
 				AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */,
 			);
 			path = ViewModels;
@@ -129,6 +140,7 @@
 			children = (
 				AA04504424E481110013FAA3 /* ProviderRowViewModel.swift */,
 				AA04504924E4AAC00013FAA3 /* PlatformRowViewModel.swift */,
+				AAAFECCC24E7491400CD3AA5 /* CastableRowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -189,8 +201,10 @@
 			isa = PBXGroup;
 			children = (
 				AAA689D524D850B300D0AA69 /* Data */,
+				AAAFECC824E707E000CD3AA5 /* ProviderGroup+Model.swift */,
 				AA04504024E474950013FAA3 /* Provider+Model.swift */,
 				AA04503824E462B50013FAA3 /* TwitchChannel+Model.swift */,
+				AAAFECCA24E7326400CD3AA5 /* TwitchStream+Model.swift */,
 				AA04503E24E469580013FAA3 /* App+Model.swift */,
 				AA04504224E479180013FAA3 /* Platform+Model.swift */,
 				AA044FFC24E447090013FAA3 /* Model.xcdatamodeld */,
@@ -226,6 +240,7 @@
 				AA04504624E481230013FAA3 /* ViewModels */,
 				AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */,
 				AA04504724E4A99B0013FAA3 /* PlatformRow.swift */,
+				AAAFECCE24E74D7800CD3AA5 /* CastableRow.swift */,
 			);
 			path = Rows;
 			sourceTree = "<group>";
@@ -405,6 +420,7 @@
 				AA04503924E462B50013FAA3 /* TwitchChannel+Model.swift in Sources */,
 				AA044FF624E3B6DA0013FAA3 /* ProviderGroupView.swift in Sources */,
 				AA044FFA24E440860013FAA3 /* PlatformListView.swift in Sources */,
+				AAAFECCD24E7491500CD3AA5 /* CastableRowViewModel.swift in Sources */,
 				AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */,
 				AA04503F24E469580013FAA3 /* App+Model.swift in Sources */,
 				AAE4EE4A24E25B1C00BDA4B6 /* ViewModel.swift in Sources */,
@@ -418,9 +434,13 @@
 				AAE4EE5224E2F57E00BDA4B6 /* PlatformService.swift in Sources */,
 				AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */,
 				AAE4EE3524E0C4C900BDA4B6 /* TwitchService.swift in Sources */,
+				AAAFECCB24E7326400CD3AA5 /* TwitchStream+Model.swift in Sources */,
 				AA04504324E479180013FAA3 /* Platform+Model.swift in Sources */,
+				AAAFECCF24E74D7900CD3AA5 /* CastableRow.swift in Sources */,
 				AA04504C24E4BAC30013FAA3 /* PlatformListViewModel.swift in Sources */,
 				AADFC7FF24D24DF200A57ED1 /* Castable.swift in Sources */,
+				AAAFECC724E6DD5100CD3AA5 /* ProviderGroupViewModel.swift in Sources */,
+				AAAFECC924E707E000CD3AA5 /* ProviderGroup+Model.swift in Sources */,
 				AA04504824E4A99B0013FAA3 /* PlatformRow.swift in Sources */,
 				AAE4EE3D24E0EF0A00BDA4B6 /* ProviderListView.swift in Sources */,
 				AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */,

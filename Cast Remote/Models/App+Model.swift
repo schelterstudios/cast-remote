@@ -11,26 +11,26 @@ import CoreData
 
 extension App {
     
-    static private var _current: App?
+    static private var _shared: App?
     
-    static var current: App {
+    static var shared: App {
         get {
-            if (_current == nil) {
+            if (_shared == nil) {
                 let viewContext = AppDelegate.current.persistentContainer.viewContext
                 let req: NSFetchRequest<App> = App.fetchRequest()
                 
                 do {
-                    _current = try viewContext.fetch(req).first
+                    _shared = try viewContext.fetch(req).first
                 } catch let err {
                     fatalError("Unresolved error \(err)")
                 }
                 
-                if (_current == nil) {
-                    _current = App(context: viewContext)
-                    _current!.pinned = ProviderGroup(context: viewContext)
+                if (_shared == nil) {
+                    _shared = App(context: viewContext)
+                    _shared!.pinned = ProviderGroup(context: viewContext)
                 }
             }
-            return _current!
+            return _shared!
         }
     }
 }

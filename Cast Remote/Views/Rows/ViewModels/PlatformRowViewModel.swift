@@ -9,21 +9,27 @@
 import SwiftUI
 import UIKit
 
-class PlatformRowViewModel: Identifiable {
+extension PlatformType {
     
-    let id = UUID()
-        
     var displayName: String {
-        switch type {
+        switch self {
         case .twitch : return "Twitch"
         }
     }
     
     var logo: UIImage {
-        switch type {
-        case .twitch : return #imageLiteral(resourceName: "Logo-Twitch")
+        switch self {
+        case .twitch : return #imageLiteral(resourceName: "twitch")
         }
     }
+}
+
+class PlatformRowViewModel: Identifiable {
+    
+    let id = UUID()
+        
+    var displayName: String { type.displayName }
+    var logo: UIImage { type.logo }
     
     let submodel: AnyViewModel<ProviderListState, ProviderListInput>
     private let type: PlatformType

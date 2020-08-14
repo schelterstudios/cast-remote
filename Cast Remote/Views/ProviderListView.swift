@@ -57,7 +57,11 @@ struct ProviderListView: View {
             } else if providers != nil {
                 List {
                     ForEach(providers!) { provider in
-                        ProviderRow(model: provider)                        
+                        ProviderRow(model: provider)
+                            .onTapGesture {
+                                provider.toggleSelect()
+                                self.model.trigger(.reload(false))
+                            }
                     }
                 }
                 .listStyle(GroupedListStyle())

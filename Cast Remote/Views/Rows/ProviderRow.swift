@@ -19,28 +19,31 @@ struct ProviderRow: View {
             HStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.accentColor)
-                    //Circle().fill(Color.black)
-                    //    .frame(width: 26, height: 26)
-                    KFImage(model.thumbURL)
-                        .resizable()
-                        .frame(width: 26, height: 26)
-                        .cornerRadius(7)
-                }.frame(width: 30, height: 30)
+                        .fill(model.themeColor)
+                    HStack(spacing: 0) {
+                        if model.icon != nil {
+                            Image(uiImage: model.icon!)
+                        }
+                        KFImage(model.thumbURL)
+                            .resizable()
+                            .frame(width: 26, height: 26)
+                            .cornerRadius(7)
+                    }
+
+                    .padding(.horizontal, 2)
+                }.frame(height: 30)
                 Text(model.displayName)
+                    .layoutPriority(2)
                 Spacer()
+                    .layoutPriority(1)
                 if self.model.selected {
-                    Image(uiImage: #imageLiteral(resourceName: "Star"))
-                        .resizable()
-                        .colorMultiply(Color.accentColor)
-                        .frame(width: 24, height: 24)
+                    Image(systemName: "checkmark.square")
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
                 }
             }
         }
         .contentShape(Rectangle())
-        .onTapGesture {
-            self.model.toggleSelect()
-        }
     }
 }
 

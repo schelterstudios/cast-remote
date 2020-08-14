@@ -39,4 +39,8 @@ class DemoJSON: DemoJSONLoader {
     var twitchChannels: [TwitchChannelDTO] {
         load("twitch_channels")
     }
+    
+    var twitchStreams: [TwitchStreamDTO] {
+        load("twitch_streams")
+    }
 }

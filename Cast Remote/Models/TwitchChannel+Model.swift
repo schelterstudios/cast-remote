@@ -15,11 +15,15 @@ struct TwitchChannelDTO: Codable {
     var id: TwitchChannelID
     var displayName: String
     var thumbRAW: String
+    var urlRAW: String
+    var status: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case displayName = "display_name"
         case thumbRAW = "logo"
+        case urlRAW = "url"
+        case status
     }
 }
 
@@ -59,5 +63,6 @@ extension TwitchChannel {
         if self.channelID != dto.id { return }
         self.displayName = dto.displayName
         self.thumbRAW = dto.thumbRAW
+        self.status = dto.status
     }
 }

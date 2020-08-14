@@ -18,4 +18,5 @@ protocol PlatformService {
     var cachedProviders: [Provider]? { get }
     
     func fetchProviders(force: Bool) -> AnyPublisher<[Provider], Error>
+    //func fetchCastables() -> AnyPublisher<[
 }

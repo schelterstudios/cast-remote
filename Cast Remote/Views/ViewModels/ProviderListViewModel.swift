@@ -9,10 +9,6 @@
 import SwiftUI
 import Combine
 
-protocol ProviderListViewModelDelegate: NSObjectProtocol {
-    func providerListViewModel(_ model: ProviderListViewModel, didSelectProvider provider: Provider)
-}
-
 class ProviderListViewModelBase: ViewModel {
     
     let title: String
@@ -42,7 +38,11 @@ class ProviderListViewModelBase: ViewModel {
     }
     
     func reload(force: Bool) {
-        fatalError("reload(force:) method must be overridden")
+        if force {
+            providerViewModels.forEach{ key, value in
+                value.selected = false
+            }
+        }
     }
 
     final func apply() {
@@ -50,30 +50,31 @@ class ProviderListViewModelBase: ViewModel {
         
         if case ProviderListContent.loaded(let providers) = state.content {
             
-            // get all listed Providers
-            let listed = providers.compactMap{ $0.provider }
-            
             // get selected Providers
             let selected = providers.filter{ $0.selected }.compactMap{ $0.provider }
                         
             // get Providers already stored in group
             let grouped = group.providers?.array as? [Provider] ?? []
             
-            // only keep the stored Providers that are unlisted
-            let unlisted = grouped.filter{ !listed.contains($0) }
-                
-            // store unlisted and selected Providers
-            group.providers = NSOrderedSet(array: unlisted + selected)
+            // store existing and selected Providers
+            group.providers = NSOrderedSet(array: grouped + selected)
             AppDelegate.current.saveContext()
         }
     }
     
-    fileprivate func viewModel(for provider: Provider) -> ProviderRowViewModel {
+    fileprivate func viewModel(for provider: Provider) -> ProviderRowViewModel? {
+        if group?.providers?.contains(provider) == true { return nil }
         if let vm = providerViewModels[provider] { return vm }
         let vm = ProviderRowViewModel(provider: provider)
-        vm.selected = group?.providers?.contains(provider) == true
         providerViewModels[provider] = vm
         return vm
+    }
+    
+    fileprivate func sort(rows: [ProviderRowViewModel]) -> [ProviderRowViewModel] {
+        rows.sorted { a, b in
+            //if a.selected != b.selected { return a.selected }
+            return a.displayName.lowercased() < b.displayName.lowercased()
+        }
     }
 }
 
@@ -83,28 +84,30 @@ class ProviderListViewModel: ProviderListViewModelBase {
     private var reloadPublisher: AnyCancellable?
 
     init(service: PlatformService, group: ProviderGroup) {
-        let t: String; let c: Color
+        let t: String
         switch service.type {
-        case .twitch : t = "Twitch Channels"; c = Color("Twitch"); break
+        case .twitch : t = "Twitch Channels"; break
         }
         
         self.service = service
-        super.init(title: t, themeColor: c, group: group)
+        super.init(title: t, themeColor: service.type.themeColor, group: group)
     }
     
     override func reload(force: Bool) {
+        super.reload(force: force)
         
         // If the view is still on preinit and we're forcing a reload,
         // let's at least show the cached data while fetching.
         if case ProviderListContent.preinit = content, force {
             if let cached = service.cachedProviders, cached.count > 0 {
-                content = .loaded(cached.map{ self.viewModel(for: $0)})
+                content = .loaded(self.sort(rows: cached.compactMap{ self.viewModel(for: $0)}))
             }
         }
         
         reloadPublisher?.cancel()
         reloadPublisher = service.fetchProviders(force: force)
-            .map{ r -> [ProviderRowViewModel] in r.map{ self.viewModel(for: $0) } }
+            .map{ r -> [ProviderRowViewModel] in r.compactMap{ self.viewModel(for: $0) } }
+            .map{ self.sort(rows: $0) }
             .map{ ProviderListContent.loaded($0) }
             .catch{ Just(ProviderListContent.failed($0)) }
             .assign(to: \.content, on: self)
