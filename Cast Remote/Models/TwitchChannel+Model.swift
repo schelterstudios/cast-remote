@@ -25,16 +25,17 @@ struct TwitchChannelDTO: Codable {
 
 extension TwitchChannel {
     
-    static func model(dto: TwitchChannelDTO, service: Service) -> TwitchChannel {
+    static func model(dto: TwitchChannelDTO) -> TwitchChannel {
         var model = TwitchChannel.model(channelID: dto.id)
         
         if model == nil {
             let viewContext = AppDelegate.current.persistentContainer.viewContext
             model = TwitchChannel(context: viewContext)
             model?.channelID = dto.id
+            model?.platform = Platform.model(type: .twitch)
         }
         
-        model?.update(dto: dto, service: service)
+        model?.update(dto: dto)
         return model!
     }
     
@@ -54,10 +55,9 @@ extension TwitchChannel {
         return model
     }
     
-    func update(dto: TwitchChannelDTO, service: Service) {
+    func update(dto: TwitchChannelDTO) {
         if self.channelID != dto.id { return }
         self.displayName = dto.displayName
         self.thumbRAW = dto.thumbRAW
-        self.service = service
     }
 }

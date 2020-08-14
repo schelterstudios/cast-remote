@@ -1,5 +1,5 @@
 //
-//  ProviderService.swift
+//  PlatformService.swift
 //  ChromeCast Remote
 //
 //  Created by Steve Schelter on 8/11/20.
@@ -9,8 +9,12 @@
 import Foundation
 import Combine
 
-protocol ProviderService {
-    var type: Service.ServiceType { get }
+enum PlatformType: String {
+    case twitch = "twitch"
+}
+
+protocol PlatformService {
+    var type: PlatformType { get }
     var cachedProviders: [Provider]? { get }
     
     func fetchProviders(force: Bool) -> AnyPublisher<[Provider], Error>

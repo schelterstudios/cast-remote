@@ -1,5 +1,5 @@
 //
-//  Service+Model.swift
+//  Platform+Model.swift
 //  ChromeCast Remote
 //
 //  Created by Steve Schelter on 8/12/20.
@@ -9,17 +9,13 @@
 import Foundation
 import CoreData
 
-extension Service {
+extension Platform {
     
-    enum ServiceType: String {
-        case twitch = "twitch"
-    }
-    
-    static func model(type: ServiceType) -> Service {
-        var model: Service?
+    static func model(type: PlatformType) -> Platform {
+        var model: Platform?
         
         let viewContext = AppDelegate.current.persistentContainer.viewContext
-        let req: NSFetchRequest<Service> = Service.fetchRequest()
+        let req: NSFetchRequest<Platform> = Platform.fetchRequest()
         req.predicate = NSPredicate(format: "typeRAW = %@", type.rawValue)
         
         do {
@@ -29,15 +25,15 @@ extension Service {
         }
         
         if model == nil {
-            model = Service(context: viewContext)
+            model = Platform(context: viewContext)
             model?.type = type
         }
         
         return model!
     }
     
-    var type: ServiceType {
+    var type: PlatformType {
         set { typeRAW = newValue.rawValue }
-        get { ServiceType(rawValue: typeRAW)! }
+        get { PlatformType(rawValue: typeRAW!)! }
     }
 }

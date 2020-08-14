@@ -6,7 +6,7 @@
 //  Copyright © 2020 Schelterstudios. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 protocol ProviderListViewModelDelegate: NSObjectProtocol {
@@ -16,20 +16,22 @@ protocol ProviderListViewModelDelegate: NSObjectProtocol {
 class ProviderListViewModelBase: ViewModel {
     
     let title: String
+    let themeColor: Color
     @Published private(set) var state: ProviderListState
     
     fileprivate var content: ProviderListContent {
         get { state.content }
-        set { state = ProviderListState(title: self.title, content: newValue) }
+        set { state = ProviderListState(title: title, themeColor: themeColor, content: newValue) }
     }
     
     private let group: ProviderGroup?
     private var providerViewModels: [Provider: ProviderRowViewModel] = [:]
     
-    init(title: String, group: ProviderGroup?) {
+    init(title: String, themeColor: Color, group: ProviderGroup?) {
         self.title = title
+        self.themeColor = themeColor
         self.group = group
-        self.state = ProviderListState(title: title, content: .preinit)
+        self.state = ProviderListState(title: title, themeColor: themeColor, content: .preinit)
     }
     
     final func trigger(_ input: ProviderListInput) {
@@ -77,17 +79,17 @@ class ProviderListViewModelBase: ViewModel {
 
 class ProviderListViewModel: ProviderListViewModelBase {
 
-    private let service: ProviderService
+    private let service: PlatformService
     private var reloadPublisher: AnyCancellable?
 
-    init(service: ProviderService, group: ProviderGroup) {
-        let t: String
+    init(service: PlatformService, group: ProviderGroup) {
+        let t: String; let c: Color
         switch service.type {
-        case .twitch : t = "Twitch Channels"; break
+        case .twitch : t = "Twitch Channels"; c = Color("Twitch"); break
         }
         
         self.service = service
-        super.init(title: t, group: group)
+        super.init(title: t, themeColor: c, group: group)
     }
     
     override func reload(force: Bool) {
@@ -106,25 +108,5 @@ class ProviderListViewModel: ProviderListViewModelBase {
             .map{ ProviderListContent.loaded($0) }
             .catch{ Just(ProviderListContent.failed($0)) }
             .assign(to: \.content, on: self)
-    }
-}
-
-class DemoProviderListViewModel: ProviderListViewModelBase {
-    
-    var testSuccess: Bool
-    private var demoDTOs: [Any]
-
-    init(demoDTOs: [Any], testSuccess: Bool = true) {
-        self.demoDTOs = demoDTOs
-        self.testSuccess = testSuccess
-        super.init(title: "Demo Providers", group: nil)
-    }
-    
-    override func reload(force: Bool) {
-        if !testSuccess {
-            content = .failed(NSError(domain:"test fail", code: 0, userInfo: nil))
-        }
-        let providers = demoDTOs.map{ ProviderRowViewModel(demoDTO: $0) }
-        content = .loaded(providers)
     }
 }

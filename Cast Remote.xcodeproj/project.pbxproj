@@ -8,27 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		257DB366ED7E04D95E8280BD /* Pods_ChromeCast_Remote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 171D938A4F5BA5374CF82C5B /* Pods_ChromeCast_Remote.framework */; };
-		AA044FF624E3B6DA0013FAA3 /* ProvidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA044FF524E3B6DA0013FAA3 /* ProvidersGroupView.swift */; };
-		AA044FFA24E440860013FAA3 /* ProviderServiceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA044FF924E440850013FAA3 /* ProviderServiceListView.swift */; };
+		AA044FF624E3B6DA0013FAA3 /* ProviderGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA044FF524E3B6DA0013FAA3 /* ProviderGroupView.swift */; };
+		AA044FFA24E440860013FAA3 /* PlatformListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA044FF924E440850013FAA3 /* PlatformListView.swift */; };
 		AA044FFE24E447090013FAA3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA044FFC24E447090013FAA3 /* Model.xcdatamodeld */; };
-		AA04502A24E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502224E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift */; };
-		AA04502B24E44DBE0013FAA3 /* Provider+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502324E44DBE0013FAA3 /* Provider+CoreDataProperties.swift */; };
-		AA04502C24E44DBE0013FAA3 /* Service+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502424E44DBE0013FAA3 /* Service+CoreDataClass.swift */; };
-		AA04502D24E44DBE0013FAA3 /* Service+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502524E44DBE0013FAA3 /* Service+CoreDataProperties.swift */; };
-		AA04502E24E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502624E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift */; };
-		AA04502F24E44DBE0013FAA3 /* Provider+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502724E44DBE0013FAA3 /* Provider+CoreDataClass.swift */; };
-		AA04503024E44DBE0013FAA3 /* App+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502824E44DBE0013FAA3 /* App+CoreDataProperties.swift */; };
-		AA04503124E44DBE0013FAA3 /* App+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04502924E44DBE0013FAA3 /* App+CoreDataClass.swift */; };
-		AA04503524E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04503224E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift */; };
-		AA04503724E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04503424E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift */; };
 		AA04503924E462B50013FAA3 /* TwitchChannel+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04503824E462B50013FAA3 /* TwitchChannel+Model.swift */; };
 		AA04503F24E469580013FAA3 /* App+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04503E24E469580013FAA3 /* App+Model.swift */; };
 		AA04504124E474950013FAA3 /* Provider+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504024E474950013FAA3 /* Provider+Model.swift */; };
-		AA04504324E479180013FAA3 /* Service+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504224E479180013FAA3 /* Service+Model.swift */; };
+		AA04504324E479180013FAA3 /* Platform+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504224E479180013FAA3 /* Platform+Model.swift */; };
 		AA04504524E481110013FAA3 /* ProviderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504424E481110013FAA3 /* ProviderRowViewModel.swift */; };
-		AA04504824E4A99B0013FAA3 /* ProviderServiceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504724E4A99B0013FAA3 /* ProviderServiceRow.swift */; };
-		AA04504A24E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504924E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift */; };
-		AA04504C24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504B24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift */; };
+		AA04504824E4A99B0013FAA3 /* PlatformRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504724E4A99B0013FAA3 /* PlatformRow.swift */; };
+		AA04504A24E4AAC00013FAA3 /* PlatformRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504924E4AAC00013FAA3 /* PlatformRowViewModel.swift */; };
+		AA04504C24E4BAC30013FAA3 /* PlatformListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */; };
 		AAA689D424D7E37D00D0AA69 /* twitch_channels.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA689D324D7E37D00D0AA69 /* twitch_channels.json */; };
 		AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */; };
 		AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */; };
@@ -53,7 +43,7 @@
 		AAE4EE3F24E0F0B500BDA4B6 /* ProviderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */; };
 		AAE4EE4A24E25B1C00BDA4B6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */; };
 		AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */; };
-		AAE4EE5224E2F57E00BDA4B6 /* ProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE5124E2F57E00BDA4B6 /* ProviderService.swift */; };
+		AAE4EE5224E2F57E00BDA4B6 /* PlatformService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE5124E2F57E00BDA4B6 /* PlatformService.swift */; };
 		AAE4EE5424E30A8000BDA4B6 /* DemoJSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE5324E30A8000BDA4B6 /* DemoJSONLoader.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,27 +51,17 @@
 		171D938A4F5BA5374CF82C5B /* Pods_ChromeCast_Remote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChromeCast_Remote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C4F35AFCCF5E1D50707C0DB /* Pods-ChromeCast Remote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCast Remote.release.xcconfig"; path = "Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote.release.xcconfig"; sourceTree = "<group>"; };
 		41ADF56E65B96BE224179D9C /* Pods-ChromeCast Remote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCast Remote.debug.xcconfig"; path = "Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote.debug.xcconfig"; sourceTree = "<group>"; };
-		AA044FF524E3B6DA0013FAA3 /* ProvidersGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersGroupView.swift; sourceTree = "<group>"; };
-		AA044FF924E440850013FAA3 /* ProviderServiceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServiceListView.swift; sourceTree = "<group>"; };
+		AA044FF524E3B6DA0013FAA3 /* ProviderGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderGroupView.swift; sourceTree = "<group>"; };
+		AA044FF924E440850013FAA3 /* PlatformListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformListView.swift; sourceTree = "<group>"; };
 		AA044FFD24E447090013FAA3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		AA04502224E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProviderGroup+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		AA04502324E44DBE0013FAA3 /* Provider+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Provider+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		AA04502424E44DBE0013FAA3 /* Service+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Service+CoreDataClass.swift"; sourceTree = "<group>"; };
-		AA04502524E44DBE0013FAA3 /* Service+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Service+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		AA04502624E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProviderGroup+CoreDataClass.swift"; sourceTree = "<group>"; };
-		AA04502724E44DBE0013FAA3 /* Provider+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Provider+CoreDataClass.swift"; sourceTree = "<group>"; };
-		AA04502824E44DBE0013FAA3 /* App+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "App+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		AA04502924E44DBE0013FAA3 /* App+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "App+CoreDataClass.swift"; sourceTree = "<group>"; };
-		AA04503224E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitchChannel+CoreDataClass.swift"; sourceTree = "<group>"; };
-		AA04503424E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TwitchChannel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AA04503824E462B50013FAA3 /* TwitchChannel+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitchChannel+Model.swift"; sourceTree = "<group>"; };
 		AA04503E24E469580013FAA3 /* App+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Model.swift"; sourceTree = "<group>"; };
 		AA04504024E474950013FAA3 /* Provider+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Provider+Model.swift"; sourceTree = "<group>"; };
-		AA04504224E479180013FAA3 /* Service+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Service+Model.swift"; sourceTree = "<group>"; };
+		AA04504224E479180013FAA3 /* Platform+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+Model.swift"; sourceTree = "<group>"; };
 		AA04504424E481110013FAA3 /* ProviderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderRowViewModel.swift; sourceTree = "<group>"; };
-		AA04504724E4A99B0013FAA3 /* ProviderServiceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServiceRow.swift; sourceTree = "<group>"; };
-		AA04504924E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServiceRowViewModel.swift; sourceTree = "<group>"; };
-		AA04504B24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderServiceListViewModel.swift; sourceTree = "<group>"; };
+		AA04504724E4A99B0013FAA3 /* PlatformRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformRow.swift; sourceTree = "<group>"; };
+		AA04504924E4AAC00013FAA3 /* PlatformRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformRowViewModel.swift; sourceTree = "<group>"; };
+		AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformListViewModel.swift; sourceTree = "<group>"; };
 		AA04504D24E4EA180013FAA3 /* Cast Remote.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Cast Remote.entitlements"; sourceTree = "<group>"; };
 		AAA689D324D7E37D00D0AA69 /* twitch_channels.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = twitch_channels.json; sourceTree = "<group>"; };
 		AADFC7E424D21D0500A57ED1 /* Cast Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +89,7 @@
 		AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderRow.swift; sourceTree = "<group>"; };
 		AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderListViewModel.swift; sourceTree = "<group>"; };
-		AAE4EE5124E2F57E00BDA4B6 /* ProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderService.swift; sourceTree = "<group>"; };
+		AAE4EE5124E2F57E00BDA4B6 /* PlatformService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformService.swift; sourceTree = "<group>"; };
 		AAE4EE5324E30A8000BDA4B6 /* DemoJSONLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoJSONLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */,
-				AA04504B24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift */,
+				AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */,
 				AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */,
 			);
 			path = ViewModels;
@@ -148,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				AA04504424E481110013FAA3 /* ProviderRowViewModel.swift */,
-				AA04504924E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift */,
+				AA04504924E4AAC00013FAA3 /* PlatformRowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -209,20 +189,10 @@
 			isa = PBXGroup;
 			children = (
 				AAA689D524D850B300D0AA69 /* Data */,
-				AA04502724E44DBE0013FAA3 /* Provider+CoreDataClass.swift */,
-				AA04502324E44DBE0013FAA3 /* Provider+CoreDataProperties.swift */,
 				AA04504024E474950013FAA3 /* Provider+Model.swift */,
-				AA04503224E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift */,
-				AA04503424E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift */,
 				AA04503824E462B50013FAA3 /* TwitchChannel+Model.swift */,
-				AA04502924E44DBE0013FAA3 /* App+CoreDataClass.swift */,
-				AA04502824E44DBE0013FAA3 /* App+CoreDataProperties.swift */,
 				AA04503E24E469580013FAA3 /* App+Model.swift */,
-				AA04502424E44DBE0013FAA3 /* Service+CoreDataClass.swift */,
-				AA04502524E44DBE0013FAA3 /* Service+CoreDataProperties.swift */,
-				AA04504224E479180013FAA3 /* Service+Model.swift */,
-				AA04502624E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift */,
-				AA04502224E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift */,
+				AA04504224E479180013FAA3 /* Platform+Model.swift */,
 				AA044FFC24E447090013FAA3 /* Model.xcdatamodeld */,
 			);
 			path = Models;
@@ -234,8 +204,8 @@
 				AA044FFB24E4468E0013FAA3 /* ViewModels */,
 				AADFC80A24D2874C00A57ED1 /* Rows */,
 				AAE4EE3C24E0EF0A00BDA4B6 /* ProviderListView.swift */,
-				AA044FF924E440850013FAA3 /* ProviderServiceListView.swift */,
-				AA044FF524E3B6DA0013FAA3 /* ProvidersGroupView.swift */,
+				AA044FF924E440850013FAA3 /* PlatformListView.swift */,
+				AA044FF524E3B6DA0013FAA3 /* ProviderGroupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,7 +225,7 @@
 			children = (
 				AA04504624E481230013FAA3 /* ViewModels */,
 				AAE4EE3E24E0F0B500BDA4B6 /* ProviderRow.swift */,
-				AA04504724E4A99B0013FAA3 /* ProviderServiceRow.swift */,
+				AA04504724E4A99B0013FAA3 /* PlatformRow.swift */,
 			);
 			path = Rows;
 			sourceTree = "<group>";
@@ -265,7 +235,7 @@
 			children = (
 				AADFC80724D25D4B00A57ED1 /* Resources */,
 				AAE4EE3424E0C4C900BDA4B6 /* TwitchService.swift */,
-				AAE4EE5124E2F57E00BDA4B6 /* ProviderService.swift */,
+				AAE4EE5124E2F57E00BDA4B6 /* PlatformService.swift */,
 				AADFC83324D380BA00A57ED1 /* URLRequest+Service.swift */,
 			);
 			path = Services;
@@ -432,37 +402,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA04503024E44DBE0013FAA3 /* App+CoreDataProperties.swift in Sources */,
-				AA04502E24E44DBE0013FAA3 /* ProviderGroup+CoreDataClass.swift in Sources */,
-				AA04502C24E44DBE0013FAA3 /* Service+CoreDataClass.swift in Sources */,
 				AA04503924E462B50013FAA3 /* TwitchChannel+Model.swift in Sources */,
-				AA044FF624E3B6DA0013FAA3 /* ProvidersGroupView.swift in Sources */,
-				AA044FFA24E440860013FAA3 /* ProviderServiceListView.swift in Sources */,
-				AA04502F24E44DBE0013FAA3 /* Provider+CoreDataClass.swift in Sources */,
+				AA044FF624E3B6DA0013FAA3 /* ProviderGroupView.swift in Sources */,
+				AA044FFA24E440860013FAA3 /* PlatformListView.swift in Sources */,
 				AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */,
 				AA04503F24E469580013FAA3 /* App+Model.swift in Sources */,
-				AA04502B24E44DBE0013FAA3 /* Provider+CoreDataProperties.swift in Sources */,
 				AAE4EE4A24E25B1C00BDA4B6 /* ViewModel.swift in Sources */,
 				AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */,
-				AA04504A24E4AAC00013FAA3 /* ProviderServiceRowViewModel.swift in Sources */,
+				AA04504A24E4AAC00013FAA3 /* PlatformRowViewModel.swift in Sources */,
 				AADFC83C24D380BA00A57ED1 /* URLRequest+Service.swift in Sources */,
 				AAE4EE3F24E0F0B500BDA4B6 /* ProviderRow.swift in Sources */,
-				AA04503724E461E00013FAA3 /* TwitchChannel+CoreDataProperties.swift in Sources */,
 				AA044FFE24E447090013FAA3 /* Model.xcdatamodeld in Sources */,
-				AA04502D24E44DBE0013FAA3 /* Service+CoreDataProperties.swift in Sources */,
 				AA04504524E481110013FAA3 /* ProviderRowViewModel.swift in Sources */,
 				AA04504124E474950013FAA3 /* Provider+Model.swift in Sources */,
-				AAE4EE5224E2F57E00BDA4B6 /* ProviderService.swift in Sources */,
+				AAE4EE5224E2F57E00BDA4B6 /* PlatformService.swift in Sources */,
 				AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */,
 				AAE4EE3524E0C4C900BDA4B6 /* TwitchService.swift in Sources */,
-				AA04504324E479180013FAA3 /* Service+Model.swift in Sources */,
-				AA04504C24E4BAC30013FAA3 /* ProviderServiceListViewModel.swift in Sources */,
-				AA04503524E461E00013FAA3 /* TwitchChannel+CoreDataClass.swift in Sources */,
-				AA04503124E44DBE0013FAA3 /* App+CoreDataClass.swift in Sources */,
+				AA04504324E479180013FAA3 /* Platform+Model.swift in Sources */,
+				AA04504C24E4BAC30013FAA3 /* PlatformListViewModel.swift in Sources */,
 				AADFC7FF24D24DF200A57ED1 /* Castable.swift in Sources */,
-				AA04504824E4A99B0013FAA3 /* ProviderServiceRow.swift in Sources */,
+				AA04504824E4A99B0013FAA3 /* PlatformRow.swift in Sources */,
 				AAE4EE3D24E0EF0A00BDA4B6 /* ProviderListView.swift in Sources */,
-				AA04502A24E44DBE0013FAA3 /* ProviderGroup+CoreDataProperties.swift in Sources */,
 				AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */,
 				AAE4EE5424E30A8000BDA4B6 /* DemoJSONLoader.swift in Sources */,
 			);

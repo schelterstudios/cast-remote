@@ -1,5 +1,5 @@
 //
-//  ProvidersGroupView.swift
+//  ProviderGroupView.swift
 //  ChromeCast Remote
 //
 //  Created by Steve Schelter on 8/11/20.
@@ -8,18 +8,18 @@
 
 import SwiftUI
 /*
-struct ProvidersGroupState {
+struct ProviderGroupState {
     var content: PinnedProvidersContent
     var providersModel: AnyViewModel<ProviderListState, ProviderListInput>
 }
 
-enum ProvidersGroupContent {
+enum ProviderGroupContent {
     case preinit
     case loaded([ProviderViewModel])
     case failed(Error)
 }
 */
-struct ProvidersGroupView: View {
+struct ProviderGroupView: View {
     
     //@EnvironmentObject var model: AnyViewModel<ProvidersGroupState, Never>
     @State private var showProviders = false
@@ -35,17 +35,15 @@ struct ProvidersGroupView: View {
             }){
                 Text("Add")
             }.sheet(isPresented: self.$showProviders) {
-                //ProviderListView(model: self.model.state.providersModel)
-                ProviderServiceListView(isPresented: self.$showProviders,
-                                        model: ProviderServiceListViewModel(group: App.current.pinned!)
-                                            .eraseToAnyViewModel())
+                PlatformListView(model: PlatformListViewModel(group: App.current.pinned!).eraseToAnyViewModel(),
+                                 isPresented: self.$showProviders)
             })
         }
     }
 }
 
-struct ProvidersGroupView_Previews: PreviewProvider {
+struct ProviderGroupView_Previews: PreviewProvider {
     static var previews: some View {
-        ProvidersGroupView()
+        ProviderGroupView()
     }
 }

@@ -22,9 +22,18 @@ extension ViewModel where Input == Never {
 }
 
 extension ViewModel {
-    
     func eraseToAnyViewModel() -> AnyViewModel<Self.State, Self.Input> {
         return AnyViewModel(self)
+    }
+}
+
+final class JustViewState<State, Input>: ViewModel {
+    
+    let state: State
+    func trigger(_ input: Input) {}
+    
+    init(state: State) {
+        self.state = state
     }
 }
 
@@ -47,15 +56,5 @@ final class AnyViewModel<State, Input>: ObservableObject {
     
     func trigger(_ input: Input) {
         wrappedTrigger(input)
-    }
-}
-
-class NullViewModel<State, Input>: ViewModel {
-    
-    let state: State
-    func trigger(_ input: Input) {}
-    
-    init(state: State) {
-        self.state = state
     }
 }

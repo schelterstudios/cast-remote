@@ -10,5 +10,5 @@ import Foundation
 
 extension Provider {
     
-    var thumbURL: URL? { URL(string: thumbRAW) }
+    var thumbURL: URL? { URL(string: thumbRAW!) }
 }

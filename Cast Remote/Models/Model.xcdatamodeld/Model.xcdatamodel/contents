@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="App" representedClassName="App" syncable="YES">
+    <entity name="App" representedClassName="App" syncable="YES" codeGenerationType="class">
         <relationship name="pinned" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ProviderGroup" inverseName="app" inverseEntity="ProviderGroup"/>
     </entity>
-    <entity name="Provider" representedClassName="Provider" syncable="YES">
+    <entity name="Platform" representedClassName="Platform" syncable="YES" codeGenerationType="class">
+        <attribute name="typeRAW" attributeType="String"/>
+        <relationship name="providers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Provider" inverseName="platform" inverseEntity="Provider"/>
+    </entity>
+    <entity name="Provider" representedClassName="Provider" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="displayName" attributeType="String"/>
         <attribute name="thumbRAW" attributeType="String"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProviderGroup" inverseName="providers" inverseEntity="ProviderGroup"/>
-        <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="providers" inverseEntity="Service"/>
+        <relationship name="platform" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Platform" inverseName="providers" inverseEntity="Platform"/>
     </entity>
-    <entity name="ProviderGroup" representedClassName="ProviderGroup" syncable="YES">
+    <entity name="ProviderGroup" representedClassName="ProviderGroup" syncable="YES" codeGenerationType="class">
         <relationship name="app" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="App" inverseName="pinned" inverseEntity="App"/>
         <relationship name="providers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Provider" inverseName="groups" inverseEntity="Provider"/>
     </entity>
-    <entity name="Service" representedClassName="Service" syncable="YES">
-        <attribute name="typeRAW" optional="YES" attributeType="String"/>
-        <relationship name="providers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Provider" inverseName="service" inverseEntity="Provider"/>
-    </entity>
-    <entity name="TwitchChannel" representedClassName="TwitchChannel" parentEntity="Provider" syncable="YES">
+    <entity name="TwitchChannel" representedClassName="TwitchChannel" parentEntity="Provider" syncable="YES" codeGenerationType="class">
         <attribute name="channelID" attributeType="String"/>
     </entity>
     <elements>
+        <element name="App" positionX="-1.40234375" positionY="-373.53125" width="128" height="58"/>
         <element name="Provider" positionX="-99.03125" positionY="-60.51953125" width="128" height="103"/>
         <element name="ProviderGroup" positionX="83.58203125" positionY="-151.04296875" width="128" height="73"/>
-        <element name="Service" positionX="-329.92578125" positionY="-91.21484375" width="128" height="73"/>
-        <element name="App" positionX="-1.40234375" positionY="-373.53125" width="128" height="58"/>
+        <element name="Platform" positionX="-329.92578125" positionY="-91.21484375" width="128" height="73"/>
         <element name="TwitchChannel" positionX="-107.90625" positionY="126.2890625" width="128" height="58"/>
     </elements>
 </model>

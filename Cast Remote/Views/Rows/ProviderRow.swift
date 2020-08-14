@@ -16,23 +16,29 @@ struct ProviderRow: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .fill(self.model.selected ? Color.purple : Color.white)
-                .frame(height: 30)
             HStack {
                 ZStack {
-                    Circle().fill(Color.purple)
-                    Circle().fill(Color.black)
-                        .frame(width: 26, height: 26)
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.accentColor)
+                    //Circle().fill(Color.black)
+                    //    .frame(width: 26, height: 26)
                     KFImage(model.thumbURL)
                         .resizable()
-                        .frame(width: 24, height: 24)
-                        .cornerRadius(25)
+                        .frame(width: 26, height: 26)
+                        .cornerRadius(7)
                 }.frame(width: 30, height: 30)
                 Text(model.displayName)
                 Spacer()
+                if self.model.selected {
+                    Image(uiImage: #imageLiteral(resourceName: "Star"))
+                        .resizable()
+                        .colorMultiply(Color.accentColor)
+                        .frame(width: 24, height: 24)
+                }
             }
-        }.onTapGesture {
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
             self.model.toggleSelect()
         }
     }

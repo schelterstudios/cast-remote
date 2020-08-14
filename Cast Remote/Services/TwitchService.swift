@@ -12,9 +12,9 @@ import Combine
 fileprivate let KRAKEN = "https://api.twitch.tv/kraken"
 fileprivate let USER_ID = "39531886"
 
-class TwitchService: ProviderService {
+class TwitchService: PlatformService {
     
-    let type = Service.ServiceType.twitch
+    let type = PlatformType.twitch
     
     var cachedProviders: [Provider]? {
         model.providers?.allObjects as? [Provider]
@@ -29,7 +29,7 @@ class TwitchService: ProviderService {
     }
     
     /// CoreData object that can serve as a cache
-    private let model: Service = Service.model(type: .twitch)
+    private let model: Platform = Platform.model(type: .twitch)
     
     /// Returns a Publisher for an array of Provider objects
     /// - Parameters:
@@ -53,8 +53,9 @@ class TwitchService: ProviderService {
             }
             .decode(type: FollowsResultDTO.self, decoder: JSONDecoder())
             .map{ r -> [TwitchChannelDTO] in r.follows.map{ $0.channel } }
+            .receive(on: DispatchQueue.main)
             .map{ r -> [Provider] in
-                let providers = r.map{ TwitchChannel.model(dto: $0, service: self.model) }
+                let providers = r.map{ TwitchChannel.model(dto: $0) }
                 AppDelegate.current.saveContext()
                 return providers
             }

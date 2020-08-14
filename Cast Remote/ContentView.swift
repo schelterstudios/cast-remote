@@ -66,7 +66,7 @@ struct ContentView: View {
                     Text("First")
                 }
             }.tag(0)
-            ProvidersGroupView()
+            ProviderGroupView()
                 //.environmentObject(pinnedModel)
             .tabItem {
                 VStack {
@@ -117,6 +117,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView().colorScheme(.light)
+            ContentView().colorScheme(.dark)
+        }
     }
 }

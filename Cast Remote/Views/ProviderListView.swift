@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ProviderListState {
     var title: String
+    var themeColor: Color
     var content: ProviderListContent
 }
 
@@ -27,6 +28,7 @@ enum ProviderListInput {
 struct ProviderListView: View {
 
     @Binding var isPresented: Bool
+    @Binding var accentColor: Color
     @ObservedObject var model: AnyViewModel<ProviderListState, ProviderListInput>
     
     // NOTE: - breaking out content due too ViewBuilder limitations
@@ -72,15 +74,36 @@ struct ProviderListView: View {
         }) {
             Text("Done")
         })
-        .onAppear{ self.model.trigger(.reload(true)) }
+        //.accentColor(Color.orange)
+        .onAppear{
+            self.accentColor = self.model.state.themeColor
+            self.model.trigger(.reload(true))
+        }
     }
 }
 
+fileprivate let previewPreinit = ProviderListState(title: "Demo Providers", themeColor: Color.green, content: .preinit)
+fileprivate let previewLoaded = ProviderListState(title: "Demo Providers", themeColor: Color.green,
+                                                  content: ProviderListContent.loaded(DemoJSON().twitchChannels.map{
+                                                    ProviderRowViewModel(demoDTO: $0) }))
+fileprivate let previewFailed = ProviderListState(title: "Demo Providers", themeColor: Color.green,
+                                                  content: .failed(NSError(domain: "ErrorDomain", code: 400, userInfo: nil)))
+
 struct ProviderListView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            ProviderListView(isPresented: .constant(true),
-                             model: DemoProviderListViewModel(demoDTOs: DemoJSON().twitchChannels).eraseToAnyViewModel())
+        Group {
+            NavigationView {
+                ProviderListView(isPresented: .constant(true), accentColor: .constant(Color.accentColor),
+                                 model: JustViewState(state: previewPreinit).eraseToAnyViewModel())
+            }
+            NavigationView {
+                ProviderListView(isPresented: .constant(true), accentColor: .constant(Color.accentColor),
+                                 model: JustViewState(state: previewLoaded).eraseToAnyViewModel())
+            }
+            NavigationView {
+                ProviderListView(isPresented: .constant(true), accentColor: .constant(Color.accentColor),
+                                 model: JustViewState(state: previewFailed).eraseToAnyViewModel())
+            }
         }
     }
 }

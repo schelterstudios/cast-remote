@@ -1,5 +1,5 @@
 //
-//  ProviderServiceRow.swift
+//  PlatformRow.swift
 //  ChromeCast Remote
 //
 //  Created by Steve Schelter on 8/12/20.
@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct ProviderServiceRow: View {
+struct PlatformRow: View {
     
-    let model: ProviderServiceRowViewModel
+    let model: PlatformRowViewModel
     
     var body: some View {
         HStack {
@@ -23,8 +23,8 @@ struct ProviderServiceRow: View {
     }
 }
 
-struct ProviderServiceRow_Previews: PreviewProvider {
+struct PlatformRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProviderServiceRow(model: ProviderServiceRowViewModel(type: .twitch))
+        PlatformRow(model: PlatformRowViewModel(type: .twitch))
     }
 }
