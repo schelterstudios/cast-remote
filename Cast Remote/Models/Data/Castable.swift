@@ -1,6 +1,6 @@
 //
 //  Castable.swift
-//  ChromeCast Remote
+//  Cast Remote
 //
 //  Created by Steve Schelter on 7/29/20.
 //  Copyright © 2020 Schelterstudios. All rights reserved.

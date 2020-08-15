@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		257DB366ED7E04D95E8280BD /* Pods_ChromeCast_Remote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 171D938A4F5BA5374CF82C5B /* Pods_ChromeCast_Remote.framework */; };
 		AA044FF624E3B6DA0013FAA3 /* ProviderGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA044FF524E3B6DA0013FAA3 /* ProviderGroupView.swift */; };
 		AA044FFA24E440860013FAA3 /* PlatformListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA044FF924E440850013FAA3 /* PlatformListView.swift */; };
 		AA044FFE24E447090013FAA3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA044FFC24E447090013FAA3 /* Model.xcdatamodeld */; };
@@ -25,6 +24,12 @@
 		AAAFECCB24E7326400CD3AA5 /* TwitchStream+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECCA24E7326400CD3AA5 /* TwitchStream+Model.swift */; };
 		AAAFECCD24E7491500CD3AA5 /* CastableRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECCC24E7491400CD3AA5 /* CastableRowViewModel.swift */; };
 		AAAFECCF24E74D7900CD3AA5 /* CastableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECCE24E74D7800CD3AA5 /* CastableRow.swift */; };
+		AAAFECD124E75B3F00CD3AA5 /* CastableListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECD024E75B3F00CD3AA5 /* CastableListView.swift */; };
+		AAAFECD324E75F6600CD3AA5 /* Pods_Cast_Remote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAFECD224E75F6600CD3AA5 /* Pods_Cast_Remote.framework */; };
+		AAAFECD424E75F6600CD3AA5 /* Pods_Cast_Remote.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAAFECD224E75F6600CD3AA5 /* Pods_Cast_Remote.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAAFECD724E7624000CD3AA5 /* CastableListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECD624E7624000CD3AA5 /* CastableListViewModel.swift */; };
+		AAAFECDA24E7719400CD3AA5 /* ManagedObject+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECD924E7719400CD3AA5 /* ManagedObject+Model.swift */; };
+		AAAFECDC24E7768900CD3AA5 /* CastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECDB24E7768900CD3AA5 /* CastService.swift */; };
 		AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */; };
 		AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */; };
 		AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7EB24D21D0500A57ED1 /* ContentView.swift */; };
@@ -52,6 +57,20 @@
 		AAE4EE5424E30A8000BDA4B6 /* DemoJSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE4EE5324E30A8000BDA4B6 /* DemoJSONLoader.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AAAFECD524E75F6700CD3AA5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AAAFECD424E75F6600CD3AA5 /* Pods_Cast_Remote.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		171D938A4F5BA5374CF82C5B /* Pods_ChromeCast_Remote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChromeCast_Remote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C4F35AFCCF5E1D50707C0DB /* Pods-ChromeCast Remote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCast Remote.release.xcconfig"; path = "Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +93,11 @@
 		AAAFECCA24E7326400CD3AA5 /* TwitchStream+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitchStream+Model.swift"; sourceTree = "<group>"; };
 		AAAFECCC24E7491400CD3AA5 /* CastableRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastableRowViewModel.swift; sourceTree = "<group>"; };
 		AAAFECCE24E74D7800CD3AA5 /* CastableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastableRow.swift; sourceTree = "<group>"; };
+		AAAFECD024E75B3F00CD3AA5 /* CastableListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastableListView.swift; sourceTree = "<group>"; };
+		AAAFECD224E75F6600CD3AA5 /* Pods_Cast_Remote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Cast_Remote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAAFECD624E7624000CD3AA5 /* CastableListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastableListViewModel.swift; sourceTree = "<group>"; };
+		AAAFECD924E7719400CD3AA5 /* ManagedObject+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedObject+Model.swift"; sourceTree = "<group>"; };
+		AAAFECDB24E7768900CD3AA5 /* CastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastService.swift; sourceTree = "<group>"; };
 		AADFC7E424D21D0500A57ED1 /* Cast Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,11 +135,11 @@
 				AAE4EE2F24DF9F8300BDA4B6 /* CoreMedia.framework in Frameworks */,
 				AAE4EE2A24DF9F8300BDA4B6 /* CoreGraphics.framework in Frameworks */,
 				AAE4EE3124DF9F8300BDA4B6 /* CoreText.framework in Frameworks */,
-				257DB366ED7E04D95E8280BD /* Pods_ChromeCast_Remote.framework in Frameworks */,
 				AAE4EE2E24DF9F8300BDA4B6 /* CoreData.framework in Frameworks */,
 				AAE4EE2D24DF9F8300BDA4B6 /* AVFoundation.framework in Frameworks */,
 				AAE4EE3024DF9F8300BDA4B6 /* AudioToolbox.framework in Frameworks */,
 				AAE4EE2B24DF9F8300BDA4B6 /* CFNetwork.framework in Frameworks */,
+				AAAFECD324E75F6600CD3AA5 /* Pods_Cast_Remote.framework in Frameworks */,
 				AAE4EE2C24DF9F8300BDA4B6 /* CoreBluetooth.framework in Frameworks */,
 				AAE4EE2924DF9F8300BDA4B6 /* Accelerate.framework in Frameworks */,
 			);
@@ -130,6 +154,7 @@
 				AAE4EE4F24E2F3F700BDA4B6 /* ProviderListViewModel.swift */,
 				AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */,
 				AAAFECC624E6DD5100CD3AA5 /* ProviderGroupViewModel.swift */,
+				AAAFECD624E7624000CD3AA5 /* CastableListViewModel.swift */,
 				AAE4EE4924E25B1C00BDA4B6 /* ViewModel.swift */,
 			);
 			path = ViewModels;
@@ -201,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA689D524D850B300D0AA69 /* Data */,
+				AAAFECD924E7719400CD3AA5 /* ManagedObject+Model.swift */,
 				AAAFECC824E707E000CD3AA5 /* ProviderGroup+Model.swift */,
 				AA04504024E474950013FAA3 /* Provider+Model.swift */,
 				AA04503824E462B50013FAA3 /* TwitchChannel+Model.swift */,
@@ -220,6 +246,7 @@
 				AAE4EE3C24E0EF0A00BDA4B6 /* ProviderListView.swift */,
 				AA044FF924E440850013FAA3 /* PlatformListView.swift */,
 				AA044FF524E3B6DA0013FAA3 /* ProviderGroupView.swift */,
+				AAAFECD024E75B3F00CD3AA5 /* CastableListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -251,6 +278,7 @@
 				AADFC80724D25D4B00A57ED1 /* Resources */,
 				AAE4EE3424E0C4C900BDA4B6 /* TwitchService.swift */,
 				AAE4EE5124E2F57E00BDA4B6 /* PlatformService.swift */,
+				AAAFECDB24E7768900CD3AA5 /* CastService.swift */,
 				AADFC83324D380BA00A57ED1 /* URLRequest+Service.swift */,
 			);
 			path = Services;
@@ -259,6 +287,7 @@
 		E55CA51D2FEC1F5B7439545D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFECD224E75F6600CD3AA5 /* Pods_Cast_Remote.framework */,
 				AAE4EE2024DF9F8200BDA4B6 /* Accelerate.framework */,
 				AAE4EE2724DF9F8300BDA4B6 /* AudioToolbox.framework */,
 				AAE4EE2424DF9F8200BDA4B6 /* AVFoundation.framework */,
@@ -295,6 +324,7 @@
 				AADFC7E224D21D0500A57ED1 /* Resources */,
 				70647EA2D1CAF892FFD1C201 /* [CP] Embed Pods Frameworks */,
 				FB6A0EC645315C1B588570AB /* [CP] Copy Pods Resources */,
+				AAAFECD524E75F6700CD3AA5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -423,7 +453,9 @@
 				AAAFECCD24E7491500CD3AA5 /* CastableRowViewModel.swift in Sources */,
 				AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */,
 				AA04503F24E469580013FAA3 /* App+Model.swift in Sources */,
+				AAAFECD124E75B3F00CD3AA5 /* CastableListView.swift in Sources */,
 				AAE4EE4A24E25B1C00BDA4B6 /* ViewModel.swift in Sources */,
+				AAAFECDC24E7768900CD3AA5 /* CastService.swift in Sources */,
 				AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */,
 				AA04504A24E4AAC00013FAA3 /* PlatformRowViewModel.swift in Sources */,
 				AADFC83C24D380BA00A57ED1 /* URLRequest+Service.swift in Sources */,
@@ -444,7 +476,9 @@
 				AA04504824E4A99B0013FAA3 /* PlatformRow.swift in Sources */,
 				AAE4EE3D24E0EF0A00BDA4B6 /* ProviderListView.swift in Sources */,
 				AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */,
+				AAAFECDA24E7719400CD3AA5 /* ManagedObject+Model.swift in Sources */,
 				AAE4EE5424E30A8000BDA4B6 /* DemoJSONLoader.swift in Sources */,
+				AAAFECD724E7624000CD3AA5 /* CastableListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

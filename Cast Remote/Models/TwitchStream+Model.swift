@@ -11,12 +11,12 @@ import CoreData
 
 typealias TwitchStreamID = String
 
-struct TwitchStreamDTO: Codable {
-    var id: TwitchStreamID
-    var channel: TwitchChannelDTO
-    var preview: TwitchStreamPreview
-    var game: String
-    var viewCount: Int
+struct TwitchStreamDTO: Decodable {
+    let id: QuantumValueDTO
+    let channel: TwitchChannelDTO
+    let preview: TwitchStreamPreview
+    let game: String
+    let viewCount: Int
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -27,9 +27,9 @@ struct TwitchStreamDTO: Codable {
     }
 }
 
-struct TwitchStreamPreview: Codable {
-    var smallRAW: String
-    var mediumRAW: String
+struct TwitchStreamPreview: Decodable {
+    let smallRAW: String
+    let mediumRAW: String
     
     enum CodingKeys: String, CodingKey {
         case smallRAW = "small"
@@ -40,12 +40,12 @@ struct TwitchStreamPreview: Codable {
 extension TwitchStream {
     
     static func model(dto: TwitchStreamDTO) -> TwitchStream {
-        var model = TwitchStream.model(streamID: dto.id)
+        var model = TwitchStream.model(streamID: dto.id.stringValue)
         
         if model == nil {
             let viewContext = AppDelegate.current.persistentContainer.viewContext
             model = TwitchStream(context: viewContext)
-            model?.streamID = dto.id
+            model?.streamID = dto.id.stringValue
         }
         
         model?.update(dto: dto)
@@ -72,7 +72,7 @@ extension TwitchStream {
     
     
     func update(dto: TwitchStreamDTO) {
-        if self.streamID != dto.id { return }
+        if self.streamID != dto.id.stringValue { return }
         self.channel = TwitchChannel.model(dto: dto.channel)
         self.previewRAW = dto.preview.mediumRAW
         self.game = dto.game

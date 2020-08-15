@@ -1,6 +1,6 @@
 //
 //  ProviderGroupView.swift
-//  ChromeCast Remote
+//  Cast Remote
 //
 //  Created by Steve Schelter on 8/11/20.
 //  Copyright © 2020 Schelterstudios. All rights reserved.

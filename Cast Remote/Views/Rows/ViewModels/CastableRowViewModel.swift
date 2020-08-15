@@ -13,18 +13,18 @@ class CastableRowViewModel: Identifiable {
     let id = UUID()
     
     var title: String {
-        if let stream = self.stream {
-            return "\(stream.channel?.displayName ?? "Unknown") streaming \(stream.game ?? "")"
+        if let stream = self.castable {
+            return "\(stream.channel?.displayName ?? "Unknown") on \(stream.game ?? "")"
         } else if let dto = self.demoDTO {
-            return "\(dto.channel.displayName) streaming \(dto.game)"
+            return "\(dto.channel.displayName) on \(dto.game)"
         }
         return ""
     }
     
-    var subtitle: String? { stream?.channel?.status ?? demoDTO?.channel.status }
+    var subtitle: String? { castable?.channel?.status ?? demoDTO?.channel.status }
     
     var previewURL: URL? {
-        if let stream = self.stream {
+        if let stream = self.castable {
             return stream.previewURL
         } else if let raw = demoDTO?.preview.mediumRAW {
             return URL(string: raw)
@@ -33,23 +33,23 @@ class CastableRowViewModel: Identifiable {
     }
     
     var viewCount: Int {
-        if let stream = self.stream {
+        if let stream = self.castable {
             return Int(stream.viewCount)
         } else {
             return demoDTO?.viewCount ?? 0
         }
     }
     
-    private let stream: TwitchStream?
+    let castable: TwitchStream?
     private let demoDTO: TwitchStreamDTO?
     
-    init(stream: TwitchStream) {
-        self.stream = stream
+    init(castable: TwitchStream) {
+        self.castable = castable
         self.demoDTO = nil
     }
     
     init(demoDTO: TwitchStreamDTO) {
-        self.stream = nil
+        self.castable = nil
         self.demoDTO = demoDTO
     }
 }

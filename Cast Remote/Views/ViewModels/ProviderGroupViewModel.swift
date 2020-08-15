@@ -16,7 +16,7 @@ fileprivate extension ProviderGroup {
 
 class ProviderGroupViewModel: ViewModel {
     
-    @Published var state: ProviderGroupState
+    @Published private(set) var state: ProviderGroupState
     
     private let group: ProviderGroup
     

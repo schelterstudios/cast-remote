@@ -15,10 +15,25 @@ struct CastableRow: View {
     
     var body: some View {
         HStack(spacing: 10) {
-            KFImage(model.previewURL)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 60)
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.purple)//model.themeColor)
+                ZStack(alignment: .leading) {
+                    KFImage(model.previewURL)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 60)
+                        .cornerRadius(7)
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.purple)
+                            .frame(width: 28, height: 60)
+                        Image(uiImage: #imageLiteral(resourceName: "twitch.icon"))
+                    }
+                }
+                .padding(2)
+                .layoutPriority(1)
+            }
             VStack(spacing: 10) {
                 HStack {
                     VStack(alignment: .leading) {

@@ -1,6 +1,6 @@
 //
 //  ProviderListView.swift
-//  ChromeCast Remote
+//  Cast Remote
 //
 //  Created by Steve Schelter on 8/9/20.
 //  Copyright © 2020 Schelterstudios. All rights reserved.
@@ -47,7 +47,7 @@ struct ProviderListView: View {
     //
     
     var body: some View {
-        VStack {
+        ZStack {
             
             // failed
             if error != nil {
