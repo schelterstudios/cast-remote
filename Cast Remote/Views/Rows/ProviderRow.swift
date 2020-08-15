@@ -12,7 +12,6 @@ import struct Kingfisher.KFImage
 struct ProviderRow: View {
     
     @ObservedObject var model: ProviderRowViewModel
-    @State var testSelect = false
     
     var body: some View {
         ZStack {
@@ -38,8 +37,8 @@ struct ProviderRow: View {
                     .layoutPriority(1)
                 if self.model.selected {
                     Image(systemName: "checkmark.square")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
                 }
             }
         }

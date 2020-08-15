@@ -7,8 +7,24 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
 
-class CastableRowViewModel: Identifiable {
+class CastableRowViewModel: ObservableObject, Identifiable {
+    
+    enum Size: Int {
+        case large = 2
+        case medium = 1
+        case small = 0
+        
+        static func >= (lhs: Size, rhs: Size) -> Bool {
+            return lhs.rawValue >= rhs.rawValue
+        }
+        
+        static func <= (lhs: Size, rhs: Size) -> Bool {
+            return lhs.rawValue <= rhs.rawValue
+        }
+    }
     
     let id = UUID()
     
@@ -32,12 +48,31 @@ class CastableRowViewModel: Identifiable {
         return nil
     }
     
+    var thumbURL: URL? {
+        if let stream = self.castable {
+            return stream.channel?.thumbURL
+        }
+        return nil
+    }
+    
     var viewCount: Int {
         if let stream = self.castable {
             return Int(stream.viewCount)
         } else {
             return demoDTO?.viewCount ?? 0
         }
+    }
+    
+    @Published var casting: Bool = false
+    var size: Size { index == 0 ? .large : (index < 4 ? .medium : .small) }
+    var index: Int = 0
+    
+    var themeColor: Color {
+        castable?.channel?.platform?.type.themeColor ?? .black
+    }
+    
+    var icon: UIImage? {
+        castable?.channel?.platform?.type.icon
     }
     
     let castable: TwitchStream?
@@ -48,9 +83,10 @@ class CastableRowViewModel: Identifiable {
         self.demoDTO = nil
     }
     
-    init(demoDTO: TwitchStreamDTO) {
+    init(demoDTO: TwitchStreamDTO, index: Int) {
         self.castable = nil
         self.demoDTO = demoDTO
+        self.index = index
     }
 }
 

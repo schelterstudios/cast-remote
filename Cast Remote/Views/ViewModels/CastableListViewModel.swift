@@ -38,8 +38,9 @@ class CastableListViewModel: ViewModel {
         let channels = App.shared.pinned?.providers?.array.compactMap{ $0 as? TwitchChannel } ?? []
         reloadPublisher?.cancel()
         reloadPublisher = service.fetchCastables(force: force, channels: channels)
-            .map{ r -> [CastableRowViewModel] in r.compactMap{ self.viewModel(for: $0) } }
-            //.map{ self.sort(rows: $0) }
+            .map{ self.sort(castables: $0) }
+            .map{ r -> [(TwitchStream, Int)] in (0..<r.count).map{ (r[$0], $0) } }
+            .map{ r -> [CastableRowViewModel] in r.compactMap{ self.viewModel(for: $0.0, index: $0.1) } }
             .map{ CastableListContent.loaded($0) }
             .catch{ Just(CastableListContent.failed($0)) }
             .assign(to: \.content, on: self)
@@ -48,12 +49,24 @@ class CastableListViewModel: ViewModel {
     func cast(castable: CastableRowViewModel) {
         guard let source = castable.castable else { return }
         castService.load(castable: source)
+        castable.casting = true
     }
     
-    private func viewModel(for castable: TwitchStream) -> CastableRowViewModel {
-        if let vm = castableViewModels[castable] { return vm }
-        let vm = CastableRowViewModel(castable: castable)
-        castableViewModels[castable] = vm
-        return vm
+    private func sort(castables: [TwitchStream]) -> [TwitchStream] {
+        return castables.map{ c -> (TwitchStream, Int) in
+            guard let p = c.channel else { return (c, 999) }
+            let i = App.shared.pinned?.providers?.index(of: p) ?? 999
+            return (c, i)
+        }.sorted{ $0.1 < $1.1 }.map{ $0.0 }
+    }
+    
+    private func viewModel(for castable: TwitchStream, index: Int) -> CastableRowViewModel {
+        var vm = castableViewModels[castable]
+        if vm == nil {
+            vm = CastableRowViewModel(castable: castable)
+            castableViewModels[castable] = vm
+        }
+        vm?.index = index
+        return vm!
     }
 }

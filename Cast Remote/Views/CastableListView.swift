@@ -59,7 +59,7 @@ struct CastableListView: View {
     
     var body: some View {
         NavigationView() {
-            ZStack {
+            VStack {
                 
                 // failed
                 if error != nil {
@@ -90,7 +90,7 @@ struct CastableListView: View {
 }
 
 fileprivate let previewLoaded = CastableListState(content: CastableListContent.loaded(DemoJSON().twitchStreams.map{
-    CastableRowViewModel(demoDTO: $0) }))
+    CastableRowViewModel(demoDTO: $0, index: 0) }))
 
 struct CastableListView_Previews: PreviewProvider {
     static var previews: some View {

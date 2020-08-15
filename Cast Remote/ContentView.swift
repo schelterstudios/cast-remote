@@ -20,6 +20,7 @@ struct ContentView: View {
                 .tabItem {
                     VStack {
                         Image(systemName: "tv.fill")
+                            .imageScale(.large)
                         Text("Cast Remote")
                     }
                 }.tag(0)
@@ -29,9 +30,18 @@ struct ContentView: View {
                 .tabItem {
                     VStack {
                         Image(systemName: "eye.fill")
+                            .imageScale(.large)
                         Text("Watchlist")
                     }
                 }.tag(1)
+            Text("Settings")
+                .tabItem {
+                    VStack {
+                        Image(systemName: "person.fill")
+                            .imageScale(.large)
+                        Text("Profile")
+                    }
+                }.tag(2)
         }
     }
     
