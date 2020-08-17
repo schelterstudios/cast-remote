@@ -28,9 +28,9 @@ class ProviderGroupViewModel: ViewModel {
     
     func trigger(_ input: ProviderGroupInput) {
         switch input {
-        case .reload : reload(); break
-        case .moveRows(let fromOffsets, let toOffset) : moveRows(fromOffsets: fromOffsets, toOffset: toOffset); break
-        case .deleteRows(let indexSet) : deleteRows(at: indexSet); break
+        case .reload : reload()
+        case .moveRows(let fromOffsets, let toOffset) : moveRows(fromOffsets: fromOffsets, toOffset: toOffset)
+        case .deleteRows(let indexSet) : deleteRows(at: indexSet)
         }
     }
     

@@ -18,6 +18,8 @@
 		AA04504824E4A99B0013FAA3 /* PlatformRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504724E4A99B0013FAA3 /* PlatformRow.swift */; };
 		AA04504A24E4AAC00013FAA3 /* PlatformRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504924E4AAC00013FAA3 /* PlatformRowViewModel.swift */; };
 		AA04504C24E4BAC30013FAA3 /* PlatformListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */; };
+		AA59661524E9C87900169F5F /* OAuth2Swift+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59661424E9C87900169F5F /* OAuth2Swift+Publishers.swift */; };
+		AA59661724E9F5C900169F5F /* GCKSessionManager+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59661624E9F5C900169F5F /* GCKSessionManager+Publishers.swift */; };
 		AAA689D424D7E37D00D0AA69 /* twitch_channels.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA689D324D7E37D00D0AA69 /* twitch_channels.json */; };
 		AAAFECC724E6DD5100CD3AA5 /* ProviderGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECC624E6DD5100CD3AA5 /* ProviderGroupViewModel.swift */; };
 		AAAFECC924E707E000CD3AA5 /* ProviderGroup+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECC824E707E000CD3AA5 /* ProviderGroup+Model.swift */; };
@@ -30,6 +32,7 @@
 		AAAFECD724E7624000CD3AA5 /* CastableListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECD624E7624000CD3AA5 /* CastableListViewModel.swift */; };
 		AAAFECDA24E7719400CD3AA5 /* ManagedObject+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECD924E7719400CD3AA5 /* ManagedObject+Model.swift */; };
 		AAAFECDC24E7768900CD3AA5 /* CastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECDB24E7768900CD3AA5 /* CastService.swift */; };
+		AAAFECE024E8B87E00CD3AA5 /* GCKRemoteMediaClient+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECDF24E8B87D00CD3AA5 /* GCKRemoteMediaClient+Publishers.swift */; };
 		AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */; };
 		AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */; };
 		AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7EB24D21D0500A57ED1 /* ContentView.swift */; };
@@ -75,6 +78,8 @@
 		171D938A4F5BA5374CF82C5B /* Pods_ChromeCast_Remote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChromeCast_Remote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C4F35AFCCF5E1D50707C0DB /* Pods-ChromeCast Remote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCast Remote.release.xcconfig"; path = "Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote.release.xcconfig"; sourceTree = "<group>"; };
 		41ADF56E65B96BE224179D9C /* Pods-ChromeCast Remote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChromeCast Remote.debug.xcconfig"; path = "Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote.debug.xcconfig"; sourceTree = "<group>"; };
+		7639D96A1C0B27492EC1FFC7 /* Pods-Cast Remote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast Remote.release.xcconfig"; path = "Target Support Files/Pods-Cast Remote/Pods-Cast Remote.release.xcconfig"; sourceTree = "<group>"; };
+		982962B042D3BE9E1E3FDA95 /* Pods-Cast Remote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast Remote.debug.xcconfig"; path = "Target Support Files/Pods-Cast Remote/Pods-Cast Remote.debug.xcconfig"; sourceTree = "<group>"; };
 		AA044FF524E3B6DA0013FAA3 /* ProviderGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderGroupView.swift; sourceTree = "<group>"; };
 		AA044FF924E440850013FAA3 /* PlatformListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformListView.swift; sourceTree = "<group>"; };
 		AA044FFD24E447090013FAA3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -87,6 +92,8 @@
 		AA04504924E4AAC00013FAA3 /* PlatformRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformRowViewModel.swift; sourceTree = "<group>"; };
 		AA04504B24E4BAC30013FAA3 /* PlatformListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformListViewModel.swift; sourceTree = "<group>"; };
 		AA04504D24E4EA180013FAA3 /* Cast Remote.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Cast Remote.entitlements"; sourceTree = "<group>"; };
+		AA59661424E9C87900169F5F /* OAuth2Swift+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OAuth2Swift+Publishers.swift"; sourceTree = "<group>"; };
+		AA59661624E9F5C900169F5F /* GCKSessionManager+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GCKSessionManager+Publishers.swift"; sourceTree = "<group>"; };
 		AAA689D324D7E37D00D0AA69 /* twitch_channels.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = twitch_channels.json; sourceTree = "<group>"; };
 		AAAFECC624E6DD5100CD3AA5 /* ProviderGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderGroupViewModel.swift; sourceTree = "<group>"; };
 		AAAFECC824E707E000CD3AA5 /* ProviderGroup+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProviderGroup+Model.swift"; sourceTree = "<group>"; };
@@ -98,6 +105,7 @@
 		AAAFECD624E7624000CD3AA5 /* CastableListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastableListViewModel.swift; sourceTree = "<group>"; };
 		AAAFECD924E7719400CD3AA5 /* ManagedObject+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedObject+Model.swift"; sourceTree = "<group>"; };
 		AAAFECDB24E7768900CD3AA5 /* CastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastService.swift; sourceTree = "<group>"; };
+		AAAFECDF24E8B87D00CD3AA5 /* GCKRemoteMediaClient+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GCKRemoteMediaClient+Publishers.swift"; sourceTree = "<group>"; };
 		AADFC7E424D21D0500A57ED1 /* Cast Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,12 +178,30 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		AA59661824EA328500169F5F /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				AAAFECDE24E8B84400CD3AA5 /* Publishers */,
+			);
+			path = Combine;
+			sourceTree = "<group>";
+		};
 		AAA689D524D850B300D0AA69 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				AADFC7FE24D24DF200A57ED1 /* Castable.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		AAAFECDE24E8B84400CD3AA5 /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+				AA59661624E9F5C900169F5F /* GCKSessionManager+Publishers.swift */,
+				AAAFECDF24E8B87D00CD3AA5 /* GCKRemoteMediaClient+Publishers.swift */,
+				AA59661424E9C87900169F5F /* OAuth2Swift+Publishers.swift */,
+			);
+			path = Publishers;
 			sourceTree = "<group>";
 		};
 		AADFC7DB24D21D0500A57ED1 = {
@@ -200,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				AA04504D24E4EA180013FAA3 /* Cast Remote.entitlements */,
+				AA59661824EA328500169F5F /* Combine */,
 				AADFC82B24D380B900A57ED1 /* Services */,
 				AADFC7FD24D24C7E00A57ED1 /* Models */,
 				AADFC80024D2529200A57ED1 /* Views */,
@@ -307,6 +334,8 @@
 			children = (
 				41ADF56E65B96BE224179D9C /* Pods-ChromeCast Remote.debug.xcconfig */,
 				1C4F35AFCCF5E1D50707C0DB /* Pods-ChromeCast Remote.release.xcconfig */,
+				982962B042D3BE9E1E3FDA95 /* Pods-Cast Remote.debug.xcconfig */,
+				7639D96A1C0B27492EC1FFC7 /* Pods-Cast Remote.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -390,15 +419,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Cast Remote/Pods-Cast Remote-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Cast Remote/Pods-Cast Remote-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cast Remote/Pods-Cast Remote-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D94E1102CCACE75A5698B3B5 /* [CP] Check Pods Manifest.lock */ = {
@@ -416,7 +445,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChromeCast Remote-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Cast Remote-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -429,15 +458,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Cast Remote/Pods-Cast Remote-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Cast Remote/Pods-Cast Remote-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChromeCast Remote/Pods-ChromeCast Remote-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cast Remote/Pods-Cast Remote-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -454,6 +483,7 @@
 				AAE4EE5024E2F3F700BDA4B6 /* ProviderListViewModel.swift in Sources */,
 				AA04503F24E469580013FAA3 /* App+Model.swift in Sources */,
 				AAAFECD124E75B3F00CD3AA5 /* CastableListView.swift in Sources */,
+				AA59661524E9C87900169F5F /* OAuth2Swift+Publishers.swift in Sources */,
 				AAE4EE4A24E25B1C00BDA4B6 /* ViewModel.swift in Sources */,
 				AAAFECDC24E7768900CD3AA5 /* CastService.swift in Sources */,
 				AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */,
@@ -471,9 +501,11 @@
 				AAAFECCF24E74D7900CD3AA5 /* CastableRow.swift in Sources */,
 				AA04504C24E4BAC30013FAA3 /* PlatformListViewModel.swift in Sources */,
 				AADFC7FF24D24DF200A57ED1 /* Castable.swift in Sources */,
+				AAAFECE024E8B87E00CD3AA5 /* GCKRemoteMediaClient+Publishers.swift in Sources */,
 				AAAFECC724E6DD5100CD3AA5 /* ProviderGroupViewModel.swift in Sources */,
 				AAAFECC924E707E000CD3AA5 /* ProviderGroup+Model.swift in Sources */,
 				AA04504824E4A99B0013FAA3 /* PlatformRow.swift in Sources */,
+				AA59661724E9F5C900169F5F /* GCKSessionManager+Publishers.swift in Sources */,
 				AAE4EE3D24E0EF0A00BDA4B6 /* ProviderListView.swift in Sources */,
 				AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */,
 				AAAFECDA24E7719400CD3AA5 /* ManagedObject+Model.swift in Sources */,
@@ -612,7 +644,7 @@
 		};
 		AADFC7F924D21D0900A57ED1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41ADF56E65B96BE224179D9C /* Pods-ChromeCast Remote.debug.xcconfig */;
+			baseConfigurationReference = 982962B042D3BE9E1E3FDA95 /* Pods-Cast Remote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Remote/Cast Remote.entitlements";
@@ -634,7 +666,7 @@
 		};
 		AADFC7FA24D21D0900A57ED1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C4F35AFCCF5E1D50707C0DB /* Pods-ChromeCast Remote.release.xcconfig */;
+			baseConfigurationReference = 7639D96A1C0B27492EC1FFC7 /* Pods-Cast Remote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Remote/Cast Remote.entitlements";

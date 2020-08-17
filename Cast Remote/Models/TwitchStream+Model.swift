@@ -70,6 +70,10 @@ extension TwitchStream {
     
     var previewURL: URL? { URL(string: previewRAW!) }
     
+    var castURL: URL? {
+        get { castRAW.flatMap{ URL(string: $0) } }
+        set { castRAW = newValue?.absoluteString }
+    }
     
     func update(dto: TwitchStreamDTO) {
         if self.streamID != dto.id.stringValue { return }

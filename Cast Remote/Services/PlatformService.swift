@@ -13,6 +13,11 @@ enum PlatformType: String {
     case twitch = "twitch"
 }
 
+enum ServiceError: Error {
+    case unauthorized
+    case missingUser
+}
+
 protocol PlatformService {
     var type: PlatformType { get }
     var cachedProviders: [Provider]? { get }

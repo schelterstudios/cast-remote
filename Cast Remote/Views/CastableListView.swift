@@ -10,6 +10,7 @@ import SwiftUI
 import GoogleCast
 
 struct CastableListState {
+    //var sessionStatus: GCKSessionManager.SessionStatus
     var content: CastableListContent
 }
 
@@ -21,7 +22,7 @@ enum CastableListContent {
 
 enum CastableListInput {
     case reload(Bool)
-    case cast(CastableRowViewModel)
+    case toggle(CastableRowViewModel)
 }
 
 struct CastButton: UIViewRepresentable {
@@ -71,7 +72,7 @@ struct CastableListView: View {
                         ForEach(castables!) { castable in
                             CastableRow(model: castable)
                                 .onTapGesture {
-                                    self.model.trigger(.cast(castable))
+                                    self.model.trigger(.toggle(castable))
                                 }
                         }
                     }

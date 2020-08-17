@@ -32,8 +32,8 @@ class ProviderListViewModelBase: ViewModel {
     
     final func trigger(_ input: ProviderListInput) {
         switch input {
-        case .reload(let force) : reload(force: force); break
-        case .apply : apply(); break
+        case .reload(let force) : reload(force: force)
+        case .apply : apply()
         }
     }
     
@@ -59,6 +59,9 @@ class ProviderListViewModelBase: ViewModel {
             // store existing and selected Providers
             group.providers = NSOrderedSet(array: grouped + selected)
             AppDelegate.current.saveContext()
+            
+            // display remaining Providers
+            content = .loaded(providers.filter{ !$0.selected })
         }
     }
     
@@ -86,7 +89,7 @@ class ProviderListViewModel: ProviderListViewModelBase {
     init(service: PlatformService, group: ProviderGroup) {
         let t: String
         switch service.type {
-        case .twitch : t = "Twitch Channels"; break
+        case .twitch : t = "Twitch Channels"
         }
         
         self.service = service

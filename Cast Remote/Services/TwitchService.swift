@@ -9,8 +9,12 @@
 import Foundation
 import Combine
 import CoreData
+import OAuthSwift
 
+fileprivate let CLIENT_ID = "n33nlepetq5rw1ilhhqsllj9vcmbxt"
+fileprivate let CLIENT_SECRET = "flh79mbcg9h4a5lf6l70x61imkpbqr"
 fileprivate let KRAKEN = "https://api.twitch.tv/kraken"
+fileprivate let HELIX = "https://api.twitch.tv/helix"
 fileprivate let USER_ID = "39531886"
 
 class TwitchService: PlatformService {
@@ -19,6 +23,10 @@ class TwitchService: PlatformService {
     
     var cachedProviders: [Provider]? {
         model.providers?.allObjects as? [Provider]
+    }
+    
+    private struct UsersResultDTO: Decodable {
+        let data: [TwitchUserDTO]
     }
     
     private struct FollowsResultDTO: Decodable {
@@ -31,6 +39,59 @@ class TwitchService: PlatformService {
     
     private struct StreamsResultDTO: Decodable {
         let streams: [TwitchStreamDTO]
+    }
+    
+    func fetchUser() -> AnyPublisher<User, Error> {
+        
+        if let user = model.user {
+            return Just(user)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
+        return getBearer()
+            .flatMap{ bearer in
+                self.fetchUser(bearer: bearer).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private func getBearer() -> AnyPublisher<String, Error> {
+        let oauth2 = OAuth2Swift(consumerKey: CLIENT_ID,
+                                 consumerSecret: CLIENT_SECRET,
+                                 authorizeUrl: "https://id.twitch.tv/oauth2/authorize",
+                                 responseType: "token")
+        
+        return oauth2.authorizePublisher(callbackURL: "cast-remote://oauth-callback/twitch", scope: "user:read:email")
+            .map{ (credential, response, params) in credential.oauthToken }
+            .mapError{ $0 as Error }
+            .eraseToAnyPublisher()
+    }
+    
+    private func fetchUser(bearer: String) -> AnyPublisher<User, Error> {
+        let request = createRequest(HELIX, "users").addToken(bearer: bearer)
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .tryMap{ element -> Data in
+                guard let response = element.response as? HTTPURLResponse,
+                    response.statusCode == 200 else {
+                    throw URLError(.badServerResponse)
+                }
+                return element.data
+            }
+            .decode(type: UsersResultDTO.self, decoder: JSONDecoder())
+            .tryMap{ r -> TwitchUserDTO in
+                guard let dto = r.data.first else {
+                    throw ServiceError.missingUser
+                }
+                return dto
+            }
+            .receive(on: DispatchQueue.main)
+            .map{ r -> User in
+                let user = self.model.createUser(dto: r)
+                AppDelegate.current.saveContext()
+                return user
+            }
+            .eraseToAnyPublisher()
     }
     
     /// CoreData object that can serve as a cache
@@ -47,7 +108,13 @@ class TwitchService: PlatformService {
                 .eraseToAnyPublisher()
         }
         
-        let request = createRequest(KRAKEN, "users", USER_ID, "follows", "channels")
+        return fetchUser()
+            .flatMap{ self.fetchProviders(user: $0).eraseToAnyPublisher() }
+            .eraseToAnyPublisher()
+    }
+    
+    private func fetchProviders(user: User) -> AnyPublisher<[Provider], Error> {
+        let request = createRequest(KRAKEN, "users", user.id, "follows", "channels")
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap{ element -> Data in
                 guard let response = element.response as? HTTPURLResponse,
@@ -103,7 +170,7 @@ class TwitchService: PlatformService {
     
     private func addHeaders(request: URLRequest) -> URLRequest {
         var mrequest = request
-        mrequest.addValue("n33nlepetq5rw1ilhhqsllj9vcmbxt", forHTTPHeaderField: "Client-ID")
+        mrequest.addValue(CLIENT_ID, forHTTPHeaderField: "Client-ID")
         mrequest.addValue("application/vnd.twitchtv.v5+json", forHTTPHeaderField: "Accept")
         return mrequest
     }

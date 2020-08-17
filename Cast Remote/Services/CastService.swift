@@ -12,7 +12,7 @@ import Combine
 
 fileprivate let CONVERTER = "https://pwn.sh/tools/streamapi.py"
 
-class CastService: NSObject, GCKRequestDelegate {
+class CastService {
     
     private struct ConverterResultDTO: Decodable {
         let success: Bool
@@ -35,43 +35,60 @@ class CastService: NSObject, GCKRequestDelegate {
         }
     }
     
-    enum ConverterError: Error {
+    enum CastError: Error {
         case failed(String)
         case missingResult
         case missingParameter
+        case missingSession
+        case aborted(GCKRequestAbortReason)
     }
     
-    private var convertPublisher: AnyCancellable?
+    func load(castable: TwitchStream) -> AnyPublisher<Void, Error> {
+        return convert(castable: castable)
+            .map{ self.mediaInfo(for: castable, url: $0) }
+            .flatMap{ self.load(mediaInfo: $0) }
+            .eraseToAnyPublisher()
+    }
     
-    func load(castable: TwitchStream) {//}-> AnyPublisher<Bool, Error> z{
-        convertPublisher?.cancel()
-        convertPublisher = convert(castable: castable)
-            .sink(receiveCompletion: { completion in
-                if case .failure(let err) = completion {
-                    print("ERROR:",err)
+    func load(mediaInfo: GCKMediaInformation) -> AnyPublisher<Void, Error> {
+        return GCKCastContext.sharedInstance().sessionManager.currentSessionPublisher
+            .tryMap{ session -> GCKRemoteMediaClient in
+                guard let client = session?.remoteMediaClient else {
+                    throw CastError.missingSession
                 }
-            }){ url in
-                let mediaInfoBuilder = GCKMediaInformationBuilder.init(contentURL: url)
-                mediaInfoBuilder.streamType = GCKMediaStreamType.live;
-                mediaInfoBuilder.contentType = "video/mp4"
-                //mediaInfoBuilder.metadata = metadata
-                let info = mediaInfoBuilder.build()
-                self.load(mediaInfo: info)
+                return client
             }
-        }
+            .flatMap{ $0.loadMediaPublisher(mediaInfo: mediaInfo).eraseToAnyPublisher() }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
     
-    func load(mediaInfo: GCKMediaInformation) {//} -> AnyPublisher<Bool, Error> {
-        if let request = GCKCastContext.sharedInstance().sessionManager.currentSession?.remoteMediaClient?.loadMedia(mediaInfo) {
-            request.delegate = self
-        }
+    func stop() -> AnyPublisher<Void, Never> {
+        return GCKCastContext.sharedInstance().sessionManager.currentSessionPublisher
+            .tryMap{ session -> GCKRemoteMediaClient in
+                guard let client = session?.remoteMediaClient else {
+                    throw CastError.missingSession
+                }
+                return client
+            }
+            .flatMap{ $0.stopPublisher().eraseToAnyPublisher() }
+            .catch{ _ in return Empty<Void, Never>(completeImmediately: true) }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
     
     func convert(castable: TwitchStream) -> AnyPublisher<URL, Error> {
-        guard let castableRAW = castable.channel?.urlRAW else {
-            return Fail<URL, Error>(error: ConverterError.missingParameter).eraseToAnyPublisher()
+        if let url = castable.castURL {
+            return Just(url)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
         }
         
-        let request = URLRequest(url: URL(string: CONVERTER)!).addURLParams(["url": castableRAW])
+        guard let channelRAW = castable.channel?.urlRAW else {
+            return Fail<URL, Error>(error: CastError.missingParameter).eraseToAnyPublisher()
+        }
+        
+        let request = URLRequest(url: URL(string: CONVERTER)!).addURLParams(["url": channelRAW])
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap{ element -> Data in
@@ -82,26 +99,24 @@ class CastService: NSObject, GCKRequestDelegate {
                 return element.data
             }
             .decode(type: ConverterResultDTO.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .tryMap{ r -> URL in
-                if !r.success { throw ConverterError.failed(r.error ?? "Unknown reason") }
+                if !r.success { throw CastError.failed(r.error ?? "Unknown reason") }
                 guard let urlstr = r.urls?.best, let url = URL(string: urlstr) else {
-                    throw ConverterError.missingResult
+                    throw CastError.missingResult
                 }
+                castable.castURL = url
+                AppDelegate.current.saveContext()
                 return url
             }
-            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
-    func requestDidComplete(_ request: GCKRequest) {
-        print("SUCCESS")
-    }
-    
-    func request(_ request: GCKRequest, didAbortWith abortReason: GCKRequestAbortReason) {
-        print("ABORT")
-    }
-    
-    func request(_ request: GCKRequest, didFailWithError error: GCKError) {
-        print("FAIL", error)
+    private func mediaInfo(for castable: TwitchStream, url: URL) -> GCKMediaInformation {
+        let mediaInfoBuilder = GCKMediaInformationBuilder.init(contentURL: url)
+        mediaInfoBuilder.streamType = GCKMediaStreamType.live;
+        mediaInfoBuilder.contentType = "video/mp4"
+        //mediaInfoBuilder.metadata = metadata
+        return mediaInfoBuilder.build()
     }
 }

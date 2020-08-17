@@ -11,7 +11,10 @@ import Combine
 
 class CastableListViewModel: ViewModel {
     
+    //private(set) var sessionStatus = CurrentValueSubject<GCKSessionManager.SessionStatus, Never>()
+    
     @Published private(set) var state: CastableListState
+    private(set) var selectedCastable: TwitchStream?
     
     private var content: CastableListContent {
         get { state.content }
@@ -21,6 +24,7 @@ class CastableListViewModel: ViewModel {
     private let service = TwitchService()
     private let castService = CastService()
     private var reloadPublisher: AnyCancellable?
+    private var castPublisher: AnyCancellable?
     private var castableViewModels: [TwitchStream: CastableRowViewModel] = [:]
     
     init() {
@@ -29,8 +33,8 @@ class CastableListViewModel: ViewModel {
     
     func trigger(_ input: CastableListInput) {
         switch input {
-        case .reload(let force) : reload(force: force); break
-        case .cast(let castable) : cast(castable: castable); break
+        case .reload(let force) : reload(force: force)
+        case .toggle(let row) : toggleCast(castable: row.castable!)
         }
     }
     
@@ -46,10 +50,50 @@ class CastableListViewModel: ViewModel {
             .assign(to: \.content, on: self)
     }
     
-    func cast(castable: CastableRowViewModel) {
-        guard let source = castable.castable else { return }
-        castService.load(castable: source)
-        castable.casting = true
+    func startCast(castable: TwitchStream) {
+        if castable == selectedCastable { return }
+        
+        if let prev = selectedCastable {
+            let vm = viewModel(for: prev)
+            vm.selected = false
+            vm.status = .none
+        }
+        
+        let vm = viewModel(for: castable)
+        vm.selected = true
+        vm.status = .connecting
+        selectedCastable = castable
+        
+        castPublisher?.cancel()
+        castPublisher = castService.load(castable: castable)
+            .sink(receiveCompletion: { r in
+                if case Subscribers.Completion.failure(let err) = r {
+                    print(err)
+                    vm.status = .none
+                    vm.selected = false
+                    self.selectedCastable = nil
+                }
+            }){ vm.status = .casting }
+    }
+    
+    func stopCast() {
+        guard let selected = selectedCastable else { return }
+        let vm = viewModel(for: selected)
+        vm.selected = false
+        selectedCastable = nil
+        
+        castPublisher?.cancel()
+        castPublisher = castService.stop()
+            .sink(receiveCompletion: { r in
+                if case Subscribers.Completion.failure(let err) = r {
+                    print(err)
+                }
+            }){ vm.status = .none }
+    }
+    
+    private func toggleCast(castable: TwitchStream) {
+        if castable == selectedCastable { stopCast() }
+        else { startCast(castable: castable) }
     }
     
     private func sort(castables: [TwitchStream]) -> [TwitchStream] {
@@ -61,12 +105,17 @@ class CastableListViewModel: ViewModel {
     }
     
     private func viewModel(for castable: TwitchStream, index: Int) -> CastableRowViewModel {
+        let vm = viewModel(for: castable)
+        vm.index = index
+        return vm
+    }
+    
+    private func viewModel(for castable: TwitchStream) -> CastableRowViewModel {
         var vm = castableViewModels[castable]
         if vm == nil {
             vm = CastableRowViewModel(castable: castable)
             castableViewModels[castable] = vm
         }
-        vm?.index = index
         return vm!
     }
 }

@@ -20,6 +20,10 @@ extension URLRequest {
         return mself
     }
     
+    func addToken(bearer: String) -> URLRequest {
+        return setValue("Bearer \(bearer)", forHTTPHeaderField: "Authorization")
+    }
+    
     func addURLParams(_ params: [String:Any]) -> URLRequest {
         var mself = self
         let urlstr = mself.url!.absoluteString
@@ -66,12 +70,10 @@ extension URLRequest {
         switch(contentType) {
         case .json :
             body = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-            break
         case .form :
             let fparams = params as! [String:Any]
             let str = fparams.map{"\($0)=\($1)"}.reduce(""){[$0, $1].joined(separator: "&")}
             body = str.data(using: .utf8)
-            break
         }
         
         mself.httpBody = body

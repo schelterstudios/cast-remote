@@ -77,13 +77,18 @@ struct CastableRow: View {
                         Spacer()
                     }
                     HStack(spacing:4) {
-                        if model.casting {
+                        if model.status != .none {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8)
                                     .fill(Color.white)
                                 HStack(spacing: 4) {
-                                    Image(systemName: "play.fill")
-                                    Text("Casting")
+                                    if model.status == .casting {
+                                        Image(systemName: "play.fill")
+                                        Text("Casting")
+                                    } else {
+                                        Image(systemName: "antenna.radiowaves.left.and.right")
+                                        Text("Sending")
+                                    }
                                 }
                                 .foregroundColor(model.themeColor)
                                 .padding(.horizontal, 8)
@@ -98,8 +103,9 @@ struct CastableRow: View {
                 }.layoutPriority(1)
             }
             .font(.caption)
-            .foregroundColor(model.size == .large ? Color.white : Color.black)
+            .foregroundColor(model.size == .large ? Color.white : nil)//Color("castRowDefault"))
             .padding(.trailing, 10)
+            .contentShape(Rectangle())
         }
     }
 }
@@ -107,7 +113,7 @@ struct CastableRow: View {
 struct CastableRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CastableRow(model: CastableRowViewModel(demoDTO: DemoJSON().twitchStreams[0], index: 0))
+            CastableRow(model: CastableRowViewModel(demoDTO: DemoJSON().twitchStreams[0], index: 0, selected: true))
             CastableRow(model: CastableRowViewModel(demoDTO: DemoJSON().twitchStreams[0], index: 1))
             CastableRow(model: CastableRowViewModel(demoDTO: DemoJSON().twitchStreams[0], index: 10))
         }.previewLayout(.fixed(width: 400, height: 120))

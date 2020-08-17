@@ -26,7 +26,16 @@ class CastableRowViewModel: ObservableObject, Identifiable {
         }
     }
     
+    enum Status {
+        case connecting
+        case casting
+        case none
+    }
+    
     let id = UUID()
+    
+    @Published var selected: Bool = false
+    @Published var status: Status = .none
     
     var title: String {
         if let stream = self.castable {
@@ -63,8 +72,7 @@ class CastableRowViewModel: ObservableObject, Identifiable {
         }
     }
     
-    @Published var casting: Bool = false
-    var size: Size { index == 0 ? .large : (index < 4 ? .medium : .small) }
+    var size: Size { selected ? .large : (index < 3 ? .medium : .small) }
     var index: Int = 0
     
     var themeColor: Color {
@@ -83,10 +91,11 @@ class CastableRowViewModel: ObservableObject, Identifiable {
         self.demoDTO = nil
     }
     
-    init(demoDTO: TwitchStreamDTO, index: Int) {
+    init(demoDTO: TwitchStreamDTO, index: Int, selected: Bool = false) {
         self.castable = nil
         self.demoDTO = demoDTO
         self.index = index
+        self.selected = selected
     }
 }
 
