@@ -42,14 +42,14 @@ extension OAuth2Swift {
         }
         
         func receive<S: Subscriber>(subscriber: S) where Self.Failure == S.Failure, Self.Output == S.Input {
-            let subscription = OAuth2Subscription(oauth2: oauth2, subscriber: subscriber)
+            let subscription = OAuth2TokenSuccessSubscription(oauth2: oauth2, subscriber: subscriber)
             subscriber.receive(subscription: subscription)
             subscription.authorize(callbackURL: callbackURL, scope: scope, state: state,
                                    parameters: parameters, headers: headers)
         }
     }
     
-    private class OAuth2Subscription<S: Subscriber>: Subscription
+    private class OAuth2TokenSuccessSubscription<S: Subscriber>: Subscription
         where S.Input == TokenSuccess, S.Failure == OAuthSwiftError {
         
         private let oauth2: OAuth2Swift
@@ -65,6 +65,7 @@ extension OAuth2Swift {
                        parameters: Parameters = [:], headers: OAuthSwift.Headers? = nil) {
             
             handle?.cancel()
+            
             handle = oauth2.authorize(withCallbackURL: callbackURL,scope: scope, state: state,
                                       parameters: parameters, headers: headers) { result in
                 

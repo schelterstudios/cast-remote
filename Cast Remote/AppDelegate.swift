@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import GoogleCast
 
+fileprivate let GOOGLE_CLIENT_ID = "352922446252-ee6231toan2cnq0o98gh2dvfbgmfis80.apps.googleusercontent.com"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,8 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let criteria = GCKDiscoveryCriteria(applicationID: kGCKDefaultMediaReceiverApplicationID)
         let options = GCKCastOptions(discoveryCriteria: criteria)
+        options.physicalVolumeButtonsWillControlDeviceVolume = true
         GCKCastContext.setSharedInstanceWith(options)
-
+        
         // Enable logger.
         GCKLogger.sharedInstance().delegate = self
         return true

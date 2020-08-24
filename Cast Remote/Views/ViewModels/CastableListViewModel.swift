@@ -14,21 +14,22 @@ class CastableListViewModel: ViewModel {
     //private(set) var sessionStatus = CurrentValueSubject<GCKSessionManager.SessionStatus, Never>()
     
     @Published private(set) var state: CastableListState
-    private(set) var selectedCastable: TwitchStream?
+    private(set) var selectedCastable: Castable?
     
     private var content: CastableListContent {
         get { state.content }
-        set { state = CastableListState(content: newValue) }
+        set { state = CastableListState(title: state.title, content: newValue) }
     }
     
-    private let service = TwitchService()
+    private let group: ProviderGroup
     private let castService = CastService()
     private var reloadPublisher: AnyCancellable?
     private var castPublisher: AnyCancellable?
-    private var castableViewModels: [TwitchStream: CastableRowViewModel] = [:]
+    private var castableViewModels: [Castable: CastableRowViewModel] = [:]
     
-    init() {
-        state = CastableListState(content: .preinit)
+    init(title: String, group: ProviderGroup) {
+        self.group = group
+        state = CastableListState(title: title, content: .preinit)
     }
     
     func trigger(_ input: CastableListInput) {
@@ -39,18 +40,16 @@ class CastableListViewModel: ViewModel {
     }
     
     func reload(force: Bool) {
-        let channels = App.shared.pinned?.providers?.array.compactMap{ $0 as? TwitchChannel } ?? []
         reloadPublisher?.cancel()
-        reloadPublisher = service.fetchCastables(force: force, channels: channels)
-            .map{ self.sort(castables: $0) }
-            .map{ r -> [(TwitchStream, Int)] in (0..<r.count).map{ (r[$0], $0) } }
+        reloadPublisher = PlatformServices.fetchCastables(force: force, from: group)
+            .map{ r -> [(Castable, Int)] in (0..<r.count).map{ (r[$0], $0) } }
             .map{ r -> [CastableRowViewModel] in r.compactMap{ self.viewModel(for: $0.0, index: $0.1) } }
             .map{ CastableListContent.loaded($0) }
             .catch{ Just(CastableListContent.failed($0)) }
             .assign(to: \.content, on: self)
     }
     
-    func startCast(castable: TwitchStream) {
+    func startCast(castable: Castable) {
         if castable == selectedCastable { return }
         
         if let prev = selectedCastable {
@@ -69,9 +68,7 @@ class CastableListViewModel: ViewModel {
             .sink(receiveCompletion: { r in
                 if case Subscribers.Completion.failure(let err) = r {
                     print(err)
-                    vm.status = .none
-                    vm.selected = false
-                    self.selectedCastable = nil
+                    vm.status = .failed
                 }
             }){ vm.status = .casting }
     }
@@ -80,6 +77,7 @@ class CastableListViewModel: ViewModel {
         guard let selected = selectedCastable else { return }
         let vm = viewModel(for: selected)
         vm.selected = false
+        vm.status = .none
         selectedCastable = nil
         
         castPublisher?.cancel()
@@ -88,29 +86,21 @@ class CastableListViewModel: ViewModel {
                 if case Subscribers.Completion.failure(let err) = r {
                     print(err)
                 }
-            }){ vm.status = .none }
+            }){}
     }
     
-    private func toggleCast(castable: TwitchStream) {
+    private func toggleCast(castable: Castable) {
         if castable == selectedCastable { stopCast() }
         else { startCast(castable: castable) }
     }
     
-    private func sort(castables: [TwitchStream]) -> [TwitchStream] {
-        return castables.map{ c -> (TwitchStream, Int) in
-            guard let p = c.channel else { return (c, 999) }
-            let i = App.shared.pinned?.providers?.index(of: p) ?? 999
-            return (c, i)
-        }.sorted{ $0.1 < $1.1 }.map{ $0.0 }
-    }
-    
-    private func viewModel(for castable: TwitchStream, index: Int) -> CastableRowViewModel {
+    private func viewModel(for castable: Castable, index: Int) -> CastableRowViewModel {
         let vm = viewModel(for: castable)
         vm.index = index
         return vm
     }
     
-    private func viewModel(for castable: TwitchStream) -> CastableRowViewModel {
+    private func viewModel(for castable: Castable) -> CastableRowViewModel {
         var vm = castableViewModels[castable]
         if vm == nil {
             vm = CastableRowViewModel(castable: castable)

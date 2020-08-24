@@ -19,7 +19,7 @@ extension PlatformType {
     
     var logo: UIImage {
         switch self {
-        case .twitch : return #imageLiteral(resourceName: "twitch")
+        case .twitch : return UIImage(named: "twitch")!
         }
     }
 }

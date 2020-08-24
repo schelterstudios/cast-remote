@@ -26,7 +26,7 @@ struct CastableRow: View {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(model.themeColor)
                         ZStack(alignment: .leading) {
-                            KFImage(model.previewURL)
+                            KFImage(model.thumbURL)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: model.size == .large ? 100 : 60)
@@ -52,7 +52,7 @@ struct CastableRow: View {
                             if model.icon != nil {
                                 Image(uiImage: model.icon!)
                             }
-                            KFImage(model.thumbURL)
+                            KFImage(model.providerThumbURL)
                                 .resizable()
                                 .frame(width: 36, height: 36)
                                 .cornerRadius(7)
@@ -85,6 +85,9 @@ struct CastableRow: View {
                                     if model.status == .casting {
                                         Image(systemName: "play.fill")
                                         Text("Casting")
+                                    } else if model.status == .failed {
+                                        Image(systemName: "exclamationmark.triangle")
+                                        Text("Failed")
                                     } else {
                                         Image(systemName: "antenna.radiowaves.left.and.right")
                                         Text("Sending")

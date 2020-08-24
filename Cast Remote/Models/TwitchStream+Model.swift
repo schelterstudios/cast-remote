@@ -30,10 +30,12 @@ struct TwitchStreamDTO: Decodable {
 struct TwitchStreamPreview: Decodable {
     let smallRAW: String
     let mediumRAW: String
+    let largeRAW: String
     
     enum CodingKeys: String, CodingKey {
         case smallRAW = "small"
         case mediumRAW = "medium"
+        case largeRAW = "large"
     }
 }
 
@@ -68,18 +70,14 @@ extension TwitchStream {
         return model
     }
     
-    var previewURL: URL? { URL(string: previewRAW!) }
-    
-    var castURL: URL? {
-        get { castRAW.flatMap{ URL(string: $0) } }
-        set { castRAW = newValue?.absoluteString }
-    }
-    
     func update(dto: TwitchStreamDTO) {
         if self.streamID != dto.id.stringValue { return }
-        self.channel = TwitchChannel.model(dto: dto.channel)
-        self.previewRAW = dto.preview.mediumRAW
-        self.game = dto.game
+        self.provider = TwitchChannel.model(dto: dto.channel)
+        self.thumbRAW = dto.preview.mediumRAW
+        self.previewRAW = dto.preview.largeRAW
         self.viewCount = Int32(dto.viewCount)
+        
+        self.title = dto.channel.displayName + " on " + dto.game
+        self.subtitle = dto.channel.status
     }
 }

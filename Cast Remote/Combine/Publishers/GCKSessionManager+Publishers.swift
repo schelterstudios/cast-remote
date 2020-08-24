@@ -11,13 +11,8 @@ import GoogleCast
 import Combine
 
 extension GCKSessionManager {
-/*
+
     var currentSessionPublisher: CurrentSessionPublisher {
-        return CurrentSessionPublisher(manager: self)
-    }
-  */
-    var currentSessionPublisher: CurrentSessionPublisher {
-    //func currentSessionPublisher() -> CurrentSessionPublisher {
         return CurrentSessionPublisher(manager: self)
     }
     
@@ -32,13 +27,13 @@ extension GCKSessionManager {
         }
         
         func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
-            let subscription = CurrentSessionSubscription(manager: manager, subscriber: subscriber)
+            let subscription = GCKSessionManagerSessionSubscription(manager: manager, subscriber: subscriber)
             subscriber.receive(subscription: subscription)
             subscription.start()
         }
     }
     
-    private class CurrentSessionSubscription<S: Subscriber>: NSObject, Subscription, GCKSessionManagerListener
+    private class GCKSessionManagerSessionSubscription<S: Subscriber>: NSObject, Subscription, GCKSessionManagerListener
         where S.Input == GCKSession?, S.Failure == Error {
         
         private let manager: GCKSessionManager

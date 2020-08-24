@@ -17,17 +17,23 @@ fileprivate let KRAKEN = "https://api.twitch.tv/kraken"
 fileprivate let HELIX = "https://api.twitch.tv/helix"
 fileprivate let USER_ID = "39531886"
 
-class TwitchService: PlatformService {
-    
-    let type = PlatformType.twitch
-    
-    var cachedProviders: [Provider]? {
-        model.providers?.allObjects as? [Provider]
-    }
+class TwitchService: PlatformServiceBase {
     
     private struct UsersResultDTO: Decodable {
-        let data: [TwitchUserDTO]
+        let data: [UserDTO]
     }
+    
+    private struct UserDTO: Decodable {
+        let id: String
+        let displayName: String
+        
+        enum CodingKeys: String, CodingKey {
+            case id
+            case displayName = "display_name"
+        }
+    }
+    
+    typealias User = (userID: String, username: String)
     
     private struct FollowsResultDTO: Decodable {
         let follows: [FollowDTO]
@@ -41,19 +47,8 @@ class TwitchService: PlatformService {
         let streams: [TwitchStreamDTO]
     }
     
-    func fetchUser() -> AnyPublisher<User, Error> {
-        
-        if let user = model.user {
-            return Just(user)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-        
-        return getBearer()
-            .flatMap{ bearer in
-                self.fetchUser(bearer: bearer).eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
+    init() {
+        super.init(type: .twitch)
     }
     
     private func getBearer() -> AnyPublisher<String, Error> {
@@ -68,6 +63,22 @@ class TwitchService: PlatformService {
             .eraseToAnyPublisher()
     }
     
+    private func fetchUser() -> AnyPublisher<User, Error> {
+        if let userID = (model as? TwitchPlatform)?.userID,
+            let username = model.username {
+            
+            return Just((userID: userID, username: username))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
+        return getBearer()
+            .flatMap{ bearer in
+                self.fetchUser(bearer: bearer).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+    
     private func fetchUser(bearer: String) -> AnyPublisher<User, Error> {
         let request = createRequest(HELIX, "users").addToken(bearer: bearer)
         return URLSession.shared.dataTaskPublisher(for: request)
@@ -79,7 +90,7 @@ class TwitchService: PlatformService {
                 return element.data
             }
             .decode(type: UsersResultDTO.self, decoder: JSONDecoder())
-            .tryMap{ r -> TwitchUserDTO in
+            .tryMap{ r -> UserDTO in
                 guard let dto = r.data.first else {
                     throw ServiceError.missingUser
                 }
@@ -87,34 +98,22 @@ class TwitchService: PlatformService {
             }
             .receive(on: DispatchQueue.main)
             .map{ r -> User in
-                let user = self.model.createUser(dto: r)
+                self.model.username = r.displayName
+                (self.model as? TwitchPlatform)?.userID = r.id
                 AppDelegate.current.saveContext()
-                return user
+                return (userID: r.id, username: r.displayName)
             }
             .eraseToAnyPublisher()
     }
     
-    /// CoreData object that can serve as a cache
-    private let model: Platform = Platform.model(type: .twitch)
-    
-    /// Returns a Publisher for an array of Provider objects
-    /// - Parameters:
-    ///   - force: A flag that forces refresh (otherwise defaults to cache)
-    func fetchProviders(force: Bool) -> AnyPublisher<[Provider], Error> {
-        
-        if let cached = cachedProviders, (cached.count > 0 && !force) {
-            return Just(cached)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-        
+    override func forceFetchProviders() -> AnyPublisher<(username: String, providers:[Provider]), Error> {
         return fetchUser()
-            .flatMap{ self.fetchProviders(user: $0).eraseToAnyPublisher() }
+            .flatMap{ self.forceFetchProviders(user: $0).eraseToAnyPublisher() }
             .eraseToAnyPublisher()
     }
     
-    private func fetchProviders(user: User) -> AnyPublisher<[Provider], Error> {
-        let request = createRequest(KRAKEN, "users", user.id, "follows", "channels")
+    private func forceFetchProviders(user: User) -> AnyPublisher<(username: String, providers:[Provider]), Error> {
+        let request = createRequest(KRAKEN, "users", user.userID, "follows", "channels")
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap{ element -> Data in
                 guard let response = element.response as? HTTPURLResponse,
@@ -126,21 +125,21 @@ class TwitchService: PlatformService {
             .decode(type: FollowsResultDTO.self, decoder: JSONDecoder())
             .map{ r -> [TwitchChannelDTO] in r.follows.map{ $0.channel } }
             .receive(on: DispatchQueue.main)
-            .map{ r -> [Provider] in
+            .map{ r -> (username: String, providers:[Provider]) in
                 let providers = r.map{ TwitchChannel.model(dto: $0) as Provider }
                 // prune out unfollowed providers from cache
-                if let cachelist = self.model.providers {
-                    let unfollowed = cachelist.filter{ !providers.contains($0 as! Provider) }
-                    unfollowed.forEach{ ($0 as? NSManagedObject)?.delete() }
+                if let cache = self.cachedProviders {
+                    let unfollowed = cache.filter{ !providers.contains($0) }
+                    unfollowed.forEach{ $0.delete() }
                 }
                 AppDelegate.current.saveContext()
-                return providers
+                return (username: user.username, providers: providers)
             }
             .eraseToAnyPublisher()
     }
     
-    func fetchCastables(force: Bool, channels: [TwitchChannel]) -> AnyPublisher<[TwitchStream], Error> {
-        let params = ["channel": channels.reduce(""){ $0 + "," + $1.channelID! }]
+    override func forceFetchCastables(from providers: [Provider]) -> AnyPublisher<[Castable], Error> {
+        let params = ["channel": providers.compactMap{ $0 as? TwitchChannel }.reduce(""){ $0 + "," + $1.channelID! }]
         let request = createRequest(KRAKEN, "streams").addURLParams(params)
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap{ element -> Data in
@@ -159,6 +158,14 @@ class TwitchService: PlatformService {
                 return castables
             }
             .eraseToAnyPublisher()
+    }
+    
+    override func logOut() -> AnyPublisher<Void, Never> {
+        self.model.username = nil
+        (self.model as? TwitchPlatform)?.userID = nil
+        cachedProviders?.forEach{ $0.delete() }
+        AppDelegate.current.saveContext()
+        return Empty().eraseToAnyPublisher()
     }
     
     private func createRequest(_ urlStr: String, _ sub:Any...) -> URLRequest {

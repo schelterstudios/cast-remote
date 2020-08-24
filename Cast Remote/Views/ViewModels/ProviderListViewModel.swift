@@ -33,6 +33,7 @@ class ProviderListViewModelBase: ViewModel {
     final func trigger(_ input: ProviderListInput) {
         switch input {
         case .reload(let force) : reload(force: force)
+        case .logOut : logOut()
         case .apply : apply()
         }
     }
@@ -44,11 +45,13 @@ class ProviderListViewModelBase: ViewModel {
             }
         }
     }
+    
+    func logOut() {}
 
     final func apply() {
         guard let group = self.group else { return }
         
-        if case ProviderListContent.loaded(let providers) = state.content {
+        if case ProviderListContent.loaded(let username, let providers) = state.content {
             
             // get selected Providers
             let selected = providers.filter{ $0.selected }.compactMap{ $0.provider }
@@ -61,7 +64,7 @@ class ProviderListViewModelBase: ViewModel {
             AppDelegate.current.saveContext()
             
             // display remaining Providers
-            content = .loaded(providers.filter{ !$0.selected })
+            content = .loaded(username, providers.filter{ !$0.selected })
         }
     }
     
@@ -72,19 +75,12 @@ class ProviderListViewModelBase: ViewModel {
         providerViewModels[provider] = vm
         return vm
     }
-    
-    fileprivate func sort(rows: [ProviderRowViewModel]) -> [ProviderRowViewModel] {
-        rows.sorted { a, b in
-            //if a.selected != b.selected { return a.selected }
-            return a.displayName.lowercased() < b.displayName.lowercased()
-        }
-    }
 }
 
 class ProviderListViewModel: ProviderListViewModelBase {
 
     private let service: PlatformService
-    private var reloadPublisher: AnyCancellable?
+    private var contentPublisher: AnyCancellable?
 
     init(service: PlatformService, group: ProviderGroup) {
         let t: String
@@ -102,17 +98,29 @@ class ProviderListViewModel: ProviderListViewModelBase {
         // If the view is still on preinit and we're forcing a reload,
         // let's at least show the cached data while fetching.
         if case ProviderListContent.preinit = content, force {
-            if let cached = service.cachedProviders, cached.count > 0 {
-                content = .loaded(self.sort(rows: cached.compactMap{ self.viewModel(for: $0)}))
+            if let username = service.cachedUsername, let providers = service.cachedProviders, providers.count > 0 {
+                content = .loaded(username, providers.compactMap{ self.viewModel(for: $0) }
+                    .sorted{ $0.displayName.lowercased() < $1.displayName.lowercased() })
             }
         }
         
-        reloadPublisher?.cancel()
-        reloadPublisher = service.fetchProviders(force: force)
-            .map{ r -> [ProviderRowViewModel] in r.compactMap{ self.viewModel(for: $0) } }
-            .map{ self.sort(rows: $0) }
-            .map{ ProviderListContent.loaded($0) }
+        contentPublisher?.cancel()
+        contentPublisher = service.fetchProviders(force: force)
+            .map{ r -> (String, [ProviderRowViewModel]) in
+                (r.username, r.providers.compactMap{ self.viewModel(for: $0) }
+                    .sorted{ $0.displayName.lowercased() < $1.displayName.lowercased() })
+            }
+            .map{ ProviderListContent.loaded($0.0, $0.1) }
             .catch{ Just(ProviderListContent.failed($0)) }
+            .assign(to: \.content, on: self)
+    }
+    
+    override func logOut() {
+        contentPublisher?.cancel()
+        contentPublisher = service.logOut()
+            //.receive(on: DispatchQueue.main)
+            .map{ ProviderListContent.loggedOut }
+            .assertNoFailure()
             .assign(to: \.content, on: self)
     }
 }

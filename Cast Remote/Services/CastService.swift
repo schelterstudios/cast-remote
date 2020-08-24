@@ -43,7 +43,7 @@ class CastService {
         case aborted(GCKRequestAbortReason)
     }
     
-    func load(castable: TwitchStream) -> AnyPublisher<Void, Error> {
+    func load(castable: Castable) -> AnyPublisher<Void, Error> {
         return convert(castable: castable)
             .map{ self.mediaInfo(for: castable, url: $0) }
             .flatMap{ self.load(mediaInfo: $0) }
@@ -77,18 +77,27 @@ class CastService {
             .eraseToAnyPublisher()
     }
     
-    func convert(castable: TwitchStream) -> AnyPublisher<URL, Error> {
+    func convert(castable: Castable) -> AnyPublisher<URL, Error> {
         if let url = castable.castURL {
             return Just(url)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
         
-        guard let channelRAW = castable.channel?.urlRAW else {
+        let sourceRAW: String?
+        
+        if let twitchChannel = castable.provider as? TwitchChannel {
+            sourceRAW = twitchChannel.urlRAW
+        
+        } else {
+            sourceRAW = nil
+        }
+        
+        if sourceRAW == nil {
             return Fail<URL, Error>(error: CastError.missingParameter).eraseToAnyPublisher()
         }
         
-        let request = URLRequest(url: URL(string: CONVERTER)!).addURLParams(["url": channelRAW])
+        let request = URLRequest(url: URL(string: CONVERTER)!).addURLParams(["url": sourceRAW!])
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap{ element -> Data in
@@ -112,11 +121,23 @@ class CastService {
             .eraseToAnyPublisher()
     }
     
-    private func mediaInfo(for castable: TwitchStream, url: URL) -> GCKMediaInformation {
+    private func mediaInfo(for castable: Castable, url: URL) -> GCKMediaInformation {
+        let metadata = GCKMediaMetadata()
+        
+        if let title = castable.title {
+            metadata.setString(title, forKey: kGCKMetadataKeyTitle)
+        }
+        if let subtitle = castable.subtitle {
+            metadata.setString(subtitle, forKey: kGCKMetadataKeySubtitle)
+        }
+        if let previewURL = castable.previewURL {
+            metadata.addImage(GCKImage(url: previewURL, width: 640, height: 360))
+        }
+        
         let mediaInfoBuilder = GCKMediaInformationBuilder.init(contentURL: url)
-        mediaInfoBuilder.streamType = GCKMediaStreamType.live;
+        mediaInfoBuilder.streamType = GCKMediaStreamType.live
         mediaInfoBuilder.contentType = "video/mp4"
-        //mediaInfoBuilder.metadata = metadata
+        mediaInfoBuilder.metadata = metadata
         return mediaInfoBuilder.build()
     }
 }

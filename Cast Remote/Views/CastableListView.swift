@@ -10,7 +10,7 @@ import SwiftUI
 import GoogleCast
 
 struct CastableListState {
-    //var sessionStatus: GCKSessionManager.SessionStatus
+    var title: String
     var content: CastableListContent
 }
 
@@ -77,7 +77,7 @@ struct CastableListView: View {
                         }
                     }
                     .listStyle(GroupedListStyle())
-                    .navigationBarTitle(Text("Cast Remote"))
+                    .navigationBarTitle(Text(model.state.title))
                     .navigationBarItems(trailing: CastButton())
                 
                 // preinit
@@ -90,8 +90,9 @@ struct CastableListView: View {
     }
 }
 
-fileprivate let previewLoaded = CastableListState(content: CastableListContent.loaded(DemoJSON().twitchStreams.map{
-    CastableRowViewModel(demoDTO: $0, index: 0) }))
+fileprivate let previewLoaded = CastableListState(title: "Cast Remote",
+                                                  content: CastableListContent.loaded(DemoJSON()
+                                                    .twitchStreams.map{ CastableRowViewModel(demoDTO: $0, index: 0) }))
 
 struct CastableListView_Previews: PreviewProvider {
     static var previews: some View {

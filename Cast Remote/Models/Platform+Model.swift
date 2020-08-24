@@ -9,12 +9,6 @@
 import Foundation
 import CoreData
 
-struct User {
-    let id: String
-    let displayName: String
-    let platformType: PlatformType
-}
-
 extension Platform {
     
     static func model(type: PlatformType) -> Platform {
@@ -31,7 +25,10 @@ extension Platform {
         }
         
         if model == nil {
-            model = Platform(context: viewContext)
+            switch type {
+            case .twitch : model = TwitchPlatform(context: viewContext)
+            //default : model = Platform(context: viewContext)
+            }
             model?.type = type
         }
         
@@ -41,39 +38,5 @@ extension Platform {
     var type: PlatformType {
         set { typeRAW = newValue.rawValue }
         get { PlatformType(rawValue: typeRAW!)! }
-    }
-    
-    var user: User? {
-        set {
-            userID = newValue?.id
-            username = newValue?.displayName
-        }
-        get {
-            guard let uid = userID, let name = username else {
-                return nil
-            }
-            return User(id: uid, displayName: name, platformType: type)
-        }
-    }
-}
-
-// MARK: - Twitch Platform
-
-struct TwitchUserDTO: Decodable {
-    let id: String
-    let displayName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case displayName = "display_name"
-    }
-}
-
-extension Platform {
-    
-    func createUser(dto: TwitchUserDTO) -> User {
-        userID = dto.id
-        username = dto.displayName
-        return User(id: dto.id, displayName: dto.displayName, platformType: type)
     }
 }

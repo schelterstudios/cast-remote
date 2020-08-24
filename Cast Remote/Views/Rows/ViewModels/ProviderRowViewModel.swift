@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 extension PlatformType {
+    
     var themeColor: Color {
         switch self {
         case .twitch : return Color("twitch")
@@ -18,7 +19,7 @@ extension PlatformType {
     
     var icon: UIImage {
         switch self {
-        case .twitch : return #imageLiteral(resourceName: "twitch.icon")
+        case .twitch : return UIImage(named: "twitch.icon")!
         }
     }
 }

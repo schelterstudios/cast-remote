@@ -29,6 +29,7 @@ class CastableRowViewModel: ObservableObject, Identifiable {
     enum Status {
         case connecting
         case casting
+        case failed
         case none
     }
     
@@ -38,35 +39,42 @@ class CastableRowViewModel: ObservableObject, Identifiable {
     @Published var status: Status = .none
     
     var title: String {
-        if let stream = self.castable {
-            return "\(stream.channel?.displayName ?? "Unknown") on \(stream.game ?? "")"
+        if let castable = self.castable {
+            return castable.title ?? ""
         } else if let dto = self.demoDTO {
             return "\(dto.channel.displayName) on \(dto.game)"
         }
         return ""
     }
     
-    var subtitle: String? { castable?.channel?.status ?? demoDTO?.channel.status }
-    
-    var previewURL: URL? {
-        if let stream = self.castable {
-            return stream.previewURL
-        } else if let raw = demoDTO?.preview.mediumRAW {
-            return URL(string: raw)
+    var subtitle: String? {
+        if let castable = self.castable {
+            return castable.subtitle
+        } else if let dto = self.demoDTO {
+            return dto.channel.status
         }
         return nil
     }
     
     var thumbURL: URL? {
         if let stream = self.castable {
-            return stream.channel?.thumbURL
+            return stream.thumbURL
+        } else if let raw = demoDTO?.preview.mediumRAW {
+            return URL(string: raw)
+        }
+        return nil
+    }
+    
+    var providerThumbURL: URL? {
+        if let castable = self.castable {
+            return castable.provider?.thumbURL
         }
         return nil
     }
     
     var viewCount: Int {
-        if let stream = self.castable {
-            return Int(stream.viewCount)
+        if let castable = self.castable {
+            return Int(castable.viewCount)
         } else {
             return demoDTO?.viewCount ?? 0
         }
@@ -76,17 +84,17 @@ class CastableRowViewModel: ObservableObject, Identifiable {
     var index: Int = 0
     
     var themeColor: Color {
-        castable?.channel?.platform?.type.themeColor ?? .black
+        castable?.provider?.platform?.type.themeColor ?? .black
     }
     
     var icon: UIImage? {
-        castable?.channel?.platform?.type.icon
+        castable?.provider?.platform?.type.icon
     }
     
-    let castable: TwitchStream?
+    let castable: Castable?
     private let demoDTO: TwitchStreamDTO?
     
-    init(castable: TwitchStream) {
+    init(castable: Castable) {
         self.castable = castable
         self.demoDTO = nil
     }

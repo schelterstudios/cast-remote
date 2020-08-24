@@ -16,12 +16,14 @@ struct ProviderListState {
 
 enum ProviderListContent {
     case preinit
-    case loaded([ProviderRowViewModel])
+    case loggedOut
+    case loaded(String, [ProviderRowViewModel])
     case failed(Error)
 }
 
 enum ProviderListInput {
     case reload(Bool)
+    case logOut
     case apply
 }
 
@@ -32,8 +34,20 @@ struct ProviderListView: View {
     @ObservedObject var model: AnyViewModel<ProviderListState, ProviderListInput>
     
     // NOTE: - breaking out content due too ViewBuilder limitations
+    private var initialized: Bool {
+        if case ProviderListContent.preinit = model.state.content {
+            return false
+        }
+        return true
+    }
+    private var username: String? {
+        if case let ProviderListContent.loaded(name, _) = model.state.content {
+            return name
+        }
+        return nil
+    }
     private var providers: [ProviderRowViewModel]? {
-        if case let ProviderListContent.loaded(providers) = model.state.content {
+        if case let ProviderListContent.loaded(_, providers) = model.state.content {
             return providers
         }
         return nil
@@ -52,16 +66,46 @@ struct ProviderListView: View {
             // failed
             if error != nil {
                 Text(error!.localizedDescription)
-            
-            // loaded
-            } else if providers != nil {
+
+            // initialized
+            } else if initialized {
                 List {
-                    ForEach(providers!) { provider in
-                        ProviderRow(model: provider)
-                            .onTapGesture {
-                                provider.toggleSelect()
-                                self.model.trigger(.reload(false))
+                    if providers != nil {
+                        Section(header: Text("Content Providers")) {
+                            ForEach(providers!) { provider in
+                                ProviderRow(model: provider)
+                                    .onTapGesture {
+                                        provider.toggleSelect()
+                                        //self.model.trigger(.reload(false))
+                                    }
                             }
+                        }
+                    }
+                    Section(header: Text("Session Info")) {
+                        if username != nil {
+                            HStack {
+                                VStack {
+                                    Text("Logged in as")
+                                    Text(username!)
+                                }
+                                Spacer()
+                                Button(action: {
+                                    self.model.trigger(.logOut)
+                                }){
+                                    Text("Log Out")
+                                }
+                            }
+                        } else {
+                            HStack {
+                                Text("Not logged in")
+                                Spacer()
+                                Button(action: {
+                                    self.model.trigger(.reload(false))
+                                }){
+                                    Text("Log In")
+                                }
+                            }
+                        }
                     }
                 }
                 .listStyle(GroupedListStyle())
@@ -78,14 +122,13 @@ struct ProviderListView: View {
         }) {
             Text("Done")
         })
-        //.accentColor(Color.orange)
         .onAppear{
             self.accentColor = self.model.state.themeColor
             self.model.trigger(.reload(true))
         }
     }
 }
-
+/*
 fileprivate let previewPreinit = ProviderListState(title: "Demo Providers", themeColor: Color.green, content: .preinit)
 fileprivate let previewLoaded = ProviderListState(title: "Demo Providers", themeColor: Color.green,
                                                   content: ProviderListContent.loaded(DemoJSON().twitchChannels.map{
@@ -111,3 +154,4 @@ struct ProviderListView_Previews: PreviewProvider {
         }
     }
 }
+*/

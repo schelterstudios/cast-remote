@@ -41,8 +41,6 @@ enum QuantumValueDTO: Decodable {
     }
 }
 
-
-
 struct TwitchChannelDTO: Decodable {
     let id: QuantumValueDTO
     let displayName: String

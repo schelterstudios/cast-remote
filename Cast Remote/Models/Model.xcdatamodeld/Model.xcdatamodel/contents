@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="App" representedClassName="App" syncable="YES" codeGenerationType="class">
-        <relationship name="pinned" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ProviderGroup" inverseName="app" inverseEntity="ProviderGroup"/>
+    <entity name="Castable" representedClassName="Castable" syncable="YES" codeGenerationType="class">
+        <attribute name="castRAW" optional="YES" attributeType="String"/>
+        <attribute name="previewRAW" optional="YES" attributeType="String"/>
+        <attribute name="subtitle" optional="YES" attributeType="String"/>
+        <attribute name="thumbRAW" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="viewCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="provider" maxCount="1" deletionRule="Nullify" destinationEntity="Provider" inverseName="castables" inverseEntity="Provider"/>
     </entity>
-    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
     <entity name="Platform" representedClassName="Platform" syncable="YES" codeGenerationType="class">
         <attribute name="typeRAW" attributeType="String"/>
-        <attribute name="userID" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="providers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Provider" inverseName="platform" inverseEntity="Provider"/>
     </entity>
     <entity name="Provider" representedClassName="Provider" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="displayName" attributeType="String"/>
         <attribute name="thumbRAW" attributeType="String"/>
+        <relationship name="castables" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Castable" inverseName="provider" inverseEntity="Castable"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProviderGroup" inverseName="providers" inverseEntity="ProviderGroup"/>
         <relationship name="platform" maxCount="1" deletionRule="Nullify" destinationEntity="Platform" inverseName="providers" inverseEntity="Platform"/>
     </entity>
     <entity name="ProviderGroup" representedClassName="ProviderGroup" syncable="YES" codeGenerationType="class">
-        <relationship name="app" maxCount="1" deletionRule="Nullify" destinationEntity="App" inverseName="pinned" inverseEntity="App"/>
         <relationship name="providers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Provider" inverseName="groups" inverseEntity="Provider"/>
     </entity>
     <entity name="TwitchChannel" representedClassName="TwitchChannel" parentEntity="Provider" syncable="YES" codeGenerationType="class">
         <attribute name="channelID" attributeType="String"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <attribute name="urlRAW" attributeType="String"/>
-        <relationship name="stream" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TwitchStream" inverseName="channel" inverseEntity="TwitchStream"/>
     </entity>
-    <entity name="TwitchStream" representedClassName="TwitchStream" syncable="YES" codeGenerationType="class">
-        <attribute name="castRAW" optional="YES" attributeType="String"/>
-        <attribute name="game" attributeType="String"/>
-        <attribute name="previewRAW" attributeType="String"/>
+    <entity name="TwitchPlatform" representedClassName="TwitchPlatform" parentEntity="Platform" syncable="YES" codeGenerationType="class">
+        <attribute name="userID" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="TwitchStream" representedClassName="TwitchStream" parentEntity="Castable" syncable="YES" codeGenerationType="class">
         <attribute name="streamID" attributeType="String"/>
-        <attribute name="viewCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TwitchChannel" inverseName="stream" inverseEntity="TwitchChannel"/>
     </entity>
     <elements>
-        <element name="App" positionX="-1.40234375" positionY="-373.53125" width="128" height="58"/>
-        <element name="Platform" positionX="-329.92578125" positionY="-91.21484375" width="128" height="103"/>
-        <element name="Provider" positionX="-99.03125" positionY="-60.51953125" width="128" height="103"/>
-        <element name="ProviderGroup" positionX="83.58203125" positionY="-151.04296875" width="128" height="73"/>
-        <element name="TwitchChannel" positionX="-107.90625" positionY="126.2890625" width="128" height="103"/>
-        <element name="TwitchStream" positionX="-167.94921875" positionY="-259.98046875" width="128" height="133"/>
-        <element name="Entity" positionX="-117" positionY="-117" width="128" height="43"/>
+        <element name="Castable" positionX="-125.50390625" positionY="-306.3359375" width="128" height="148"/>
+        <element name="Platform" positionX="-336.32421875" positionY="-65.390625" width="128" height="88"/>
+        <element name="Provider" positionX="-116.8515625" positionY="-61.3828125" width="128" height="118"/>
+        <element name="ProviderGroup" positionX="100.06640625" positionY="-48.8828125" width="128" height="58"/>
+        <element name="TwitchChannel" positionX="-123.4296875" positionY="137.8046875" width="128" height="88"/>
+        <element name="TwitchStream" positionX="-335.42578125" positionY="-251.66015625" width="128" height="58"/>
+        <element name="TwitchPlatform" positionX="-335.43359375" positionY="147.66015625" width="128" height="58"/>
     </elements>
 </model>

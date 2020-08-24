@@ -14,7 +14,7 @@ class PlatformListViewModel: ViewModel {
     @Published private(set) var state: PlatformListState
         
     init(group: ProviderGroup) {
-        let services = [TwitchService()]
+        let services = PlatformServices.services
         state = PlatformListState(platforms: services.map{ PlatformListViewModel.rowViewModel(for: $0, group: group) })
     }
     

@@ -69,23 +69,10 @@ extension GCKRemoteMediaClient {
         
         func loadMedia(mediaInfo: GCKMediaInformation) {
             mediaClient.loadMedia(mediaInfo).delegate = self
-            /*
-            if let r = GCKCastContext.sharedInstance().sessionManager.currentSession?.remoteMediaClient?.loadMedia(mediaInfo) {
-                r.delegate = self
-            } else {
-                subscriber?.receive(completion: Subscribers.Completion.failure(CastService.CastError.missingSession))
-            }*/
         }
         
         func stop() {
             mediaClient.stop().delegate = self
-            /*
-            if let r = GCKCastContext.sharedInstance().sessionManager.currentSession?.remoteMediaClient?.stop() {
-                r.delegate = self
-            } else {
-                subscriber?.receive(completion: Subscribers.Completion.failure(CastService.CastError.missingSession))
-            }
-             */
         }
         
         func cancel() {
