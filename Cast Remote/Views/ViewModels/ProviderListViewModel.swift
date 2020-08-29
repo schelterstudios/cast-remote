@@ -9,28 +9,34 @@
 import SwiftUI
 import Combine
 
-class ProviderListViewModelBase: ViewModel {
+class ProviderListViewModel: ViewModel {
     
-    let title: String
-    let themeColor: Color
     @Published private(set) var state: ProviderListState
     
-    fileprivate var content: ProviderListContent {
+    private var content: ProviderListContent {
         get { state.content }
-        set { state = ProviderListState(title: title, themeColor: themeColor, content: newValue) }
+        set { state = ProviderListState(title: state.title, themeColor: state.themeColor, content: newValue) }
     }
     
-    private let group: ProviderGroup?
+    private let service: PlatformService
+    private let group: ProviderGroup
+    
     private var providerViewModels: [Provider: ProviderRowViewModel] = [:]
+    private var contentPublisher: AnyCancellable?
+
     
-    init(title: String, themeColor: Color, group: ProviderGroup?) {
-        self.title = title
-        self.themeColor = themeColor
+    init(service: PlatformService, group: ProviderGroup) {
+        let title: String
+        switch service.type {
+        case .twitch : title = "Twitch Channels"
+        }
+        
+        self.service = service
         self.group = group
-        self.state = ProviderListState(title: title, themeColor: themeColor, content: .preinit)
+        self.state = ProviderListState(title: title, themeColor: service.type.themeColor, content: .preinit)
     }
     
-    final func trigger(_ input: ProviderListInput) {
+    func trigger(_ input: ProviderListInput) {
         switch input {
         case .reload(let force) : reload(force: force)
         case .logOut : logOut()
@@ -44,56 +50,6 @@ class ProviderListViewModelBase: ViewModel {
                 value.selected = false
             }
         }
-    }
-    
-    func logOut() {}
-
-    final func apply() {
-        guard let group = self.group else { return }
-        
-        if case ProviderListContent.loaded(let username, let providers) = state.content {
-            
-            // get selected Providers
-            let selected = providers.filter{ $0.selected }.compactMap{ $0.provider }
-                        
-            // get Providers already stored in group
-            let grouped = group.providers?.array as? [Provider] ?? []
-            
-            // store existing and selected Providers
-            group.providers = NSOrderedSet(array: grouped + selected)
-            AppDelegate.current.saveContext()
-            
-            // display remaining Providers
-            content = .loaded(username, providers.filter{ !$0.selected })
-        }
-    }
-    
-    fileprivate func viewModel(for provider: Provider) -> ProviderRowViewModel? {
-        if group?.providers?.contains(provider) == true { return nil }
-        if let vm = providerViewModels[provider] { return vm }
-        let vm = ProviderRowViewModel(provider: provider)
-        providerViewModels[provider] = vm
-        return vm
-    }
-}
-
-class ProviderListViewModel: ProviderListViewModelBase {
-
-    private let service: PlatformService
-    private var contentPublisher: AnyCancellable?
-
-    init(service: PlatformService, group: ProviderGroup) {
-        let t: String
-        switch service.type {
-        case .twitch : t = "Twitch Channels"
-        }
-        
-        self.service = service
-        super.init(title: t, themeColor: service.type.themeColor, group: group)
-    }
-    
-    override func reload(force: Bool) {
-        super.reload(force: force)
         
         // If the view is still on preinit and we're forcing a reload,
         // let's at least show the cached data while fetching.
@@ -115,12 +71,38 @@ class ProviderListViewModel: ProviderListViewModelBase {
             .assign(to: \.content, on: self)
     }
     
-    override func logOut() {
+    func logOut() {
         contentPublisher?.cancel()
         contentPublisher = service.logOut()
-            //.receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)
             .map{ ProviderListContent.loggedOut }
-            .assertNoFailure()
             .assign(to: \.content, on: self)
+    }
+
+    func apply() {
+
+        if case ProviderListContent.loaded(let username, let providers) = state.content {
+            
+            // get selected Providers
+            let selected = providers.filter{ $0.selected }.compactMap{ $0.provider }
+                        
+            // get Providers already stored in group
+            let grouped = group.providers?.array as? [Provider] ?? []
+            
+            // store existing and selected Providers
+            group.providers = NSOrderedSet(array: grouped + selected)
+            AppDelegate.current.saveContext()
+            
+            // display remaining Providers
+            content = .loaded(username, providers.filter{ !$0.selected })
+        }
+    }
+    
+    private func viewModel(for provider: Provider) -> ProviderRowViewModel? {
+        if group.providers?.contains(provider) == true { return nil }
+        if let vm = providerViewModels[provider] { return vm }
+        let vm = ProviderRowViewModel(provider: provider)
+        providerViewModels[provider] = vm
+        return vm
     }
 }

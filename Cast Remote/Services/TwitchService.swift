@@ -127,11 +127,13 @@ class TwitchService: PlatformServiceBase {
             .receive(on: DispatchQueue.main)
             .map{ r -> (username: String, providers:[Provider]) in
                 let providers = r.map{ TwitchChannel.model(dto: $0) as Provider }
+                
                 // prune out unfollowed providers from cache
                 if let cache = self.cachedProviders {
                     let unfollowed = cache.filter{ !providers.contains($0) }
                     unfollowed.forEach{ $0.delete() }
                 }
+                
                 AppDelegate.current.saveContext()
                 return (username: user.username, providers: providers)
             }
@@ -152,8 +154,14 @@ class TwitchService: PlatformServiceBase {
             .decode(type: StreamsResultDTO.self, decoder: JSONDecoder())
             .map{ r -> [TwitchStreamDTO] in r.streams }
             .receive(on: DispatchQueue.main)
-            .map{ r -> [TwitchStream] in
-                let castables = r.map{ TwitchStream.model(dto: $0) }
+            .map{ r -> [Castable] in
+                let castables = r.map{ TwitchStream.model(dto: $0) as Castable }
+                
+                // prune out old streams from cache
+                let cache = providers.compactMap{ $0.castables?.allObjects as? [Castable] }.reduce([]){ $0 + $1 }
+                let oldCastables = cache.filter{ !castables.contains($0) }
+                oldCastables.forEach{ $0.delete() }
+                
                 AppDelegate.current.saveContext()
                 return castables
             }
@@ -165,7 +173,7 @@ class TwitchService: PlatformServiceBase {
         (self.model as? TwitchPlatform)?.userID = nil
         cachedProviders?.forEach{ $0.delete() }
         AppDelegate.current.saveContext()
-        return Empty().eraseToAnyPublisher()
+        return Just(()).eraseToAnyPublisher()
     }
     
     private func createRequest(_ urlStr: String, _ sub:Any...) -> URLRequest {

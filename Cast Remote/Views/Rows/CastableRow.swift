@@ -36,7 +36,13 @@ struct CastableRow: View {
                                     Rectangle()
                                         .fill(model.themeColor)
                                         .frame(width: 28, height: model.size == .large ? 100 : 60)
-                                    Image(uiImage: model.icon!)
+                                    VStack(spacing: 0) {
+                                        Image(uiImage: model.icon!)
+                                        KFImage(model.providerThumbURL)
+                                            .resizable()
+                                            .frame(width: 24, height: 24)
+                                            .cornerRadius(5)
+                                    }
                                 }
                             }
                         }

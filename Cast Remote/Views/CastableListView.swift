@@ -62,12 +62,8 @@ struct CastableListView: View {
         NavigationView() {
             VStack {
                 
-                // failed
-                if error != nil {
-                    Text(error!.localizedDescription)
-                
                 // loaded
-                } else if castables != nil {
+                if castables != nil {
                     List {
                         ForEach(castables!) { castable in
                             CastableRow(model: castable)
@@ -77,27 +73,47 @@ struct CastableListView: View {
                         }
                     }
                     .listStyle(GroupedListStyle())
-                    .navigationBarTitle(Text(model.state.title))
-                    .navigationBarItems(trailing: CastButton())
                 
+                // failed
+                } else if error != nil {
+                    FailureMessage(error: error)
+                    
                 // preinit
                 } else {
-                    Text("Loading...")
+                    Activity(description: "Loading Media")
                 }
             }
+            .navigationBarTitle(Text(model.state.title))
+            .navigationBarItems(trailing: CastButton())
         }
         .onAppear{ self.model.trigger(.reload(true)) }
     }
 }
 
+fileprivate let previewPreinit = CastableListState(title: "Cast Remote",
+                                                   content: .preinit)
+
 fileprivate let previewLoaded = CastableListState(title: "Cast Remote",
                                                   content: CastableListContent.loaded(DemoJSON()
                                                     .twitchStreams.map{ CastableRowViewModel(demoDTO: $0, index: 0) }))
 
+fileprivate let previewFailed = CastableListState(title: "Cast Remote",
+                                                  content: .failed(NSError(domain: "", code: 0, userInfo: nil)))
+
 struct CastableListView_Previews: PreviewProvider {
     static var previews: some View {
-        CastableListView()
-            .environmentObject(JustViewState<CastableListState, CastableListInput>(state: previewLoaded)
-                .eraseToAnyViewModel())
+        Group {
+            CastableListView()
+                .environmentObject(JustViewState<CastableListState, CastableListInput>(state: previewPreinit)
+                    .eraseToAnyViewModel())
+            
+            CastableListView()
+                .environmentObject(JustViewState<CastableListState, CastableListInput>(state: previewLoaded)
+                    .eraseToAnyViewModel())
+            
+            CastableListView()
+                .environmentObject(JustViewState<CastableListState, CastableListInput>(state: previewFailed)
+                    .eraseToAnyViewModel())
+        }
     }
 }

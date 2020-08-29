@@ -101,7 +101,6 @@ class PlatformServiceBase: PlatformService {
     
     func fetchCastables(force: Bool, from group: ProviderGroup) -> AnyPublisher<[Castable], Error> {
         let providers = group.providers(from: type)
-        
         let cached = providers.compactMap{ $0.castables?.allObjects as? [Castable] }.reduce([]){ $0 + $1 }
         if cached.count > 0 && !force {
             return Just(cached)

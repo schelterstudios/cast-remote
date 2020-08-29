@@ -65,7 +65,7 @@ struct ProviderListView: View {
             
             // failed
             if error != nil {
-                Text(error!.localizedDescription)
+                FailureMessage(error: error)
 
             // initialized
             } else if initialized {
@@ -84,8 +84,8 @@ struct ProviderListView: View {
                     Section(header: Text("Session Info")) {
                         if username != nil {
                             HStack {
-                                VStack {
-                                    Text("Logged in as")
+                                VStack(alignment: .leading) {
+                                    Text("Logged in as").font(.caption)
                                     Text(username!)
                                 }
                                 Spacer()
@@ -97,7 +97,7 @@ struct ProviderListView: View {
                             }
                         } else {
                             HStack {
-                                Text("Not logged in")
+                                Text("No session")
                                 Spacer()
                                 Button(action: {
                                     self.model.trigger(.reload(false))
@@ -112,7 +112,7 @@ struct ProviderListView: View {
                 
             // preinit
             } else {
-                Text("Loading...")
+                Activity(description: "Loading Providers")
             }
         }
         .navigationBarTitle(Text(model.state.title))

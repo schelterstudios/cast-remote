@@ -21,6 +21,8 @@
 		AA59661524E9C87900169F5F /* OAuth2Swift+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59661424E9C87900169F5F /* OAuth2Swift+Publishers.swift */; };
 		AA59661724E9F5C900169F5F /* GCKSessionManager+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59661624E9F5C900169F5F /* GCKSessionManager+Publishers.swift */; };
 		AAA689D424D7E37D00D0AA69 /* twitch_channels.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA689D324D7E37D00D0AA69 /* twitch_channels.json */; };
+		AAA79DE824F4D23C00FCC664 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA79DE724F4D23C00FCC664 /* Activity.swift */; };
+		AAA79DEA24F5BE5D00FCC664 /* FailureMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA79DE924F5BE5D00FCC664 /* FailureMessage.swift */; };
 		AAAFECC724E6DD5100CD3AA5 /* ProviderGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECC624E6DD5100CD3AA5 /* ProviderGroupViewModel.swift */; };
 		AAAFECC924E707E000CD3AA5 /* ProviderGroup+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECC824E707E000CD3AA5 /* ProviderGroup+Model.swift */; };
 		AAAFECCB24E7326400CD3AA5 /* TwitchStream+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECCA24E7326400CD3AA5 /* TwitchStream+Model.swift */; };
@@ -92,6 +94,8 @@
 		AA59661424E9C87900169F5F /* OAuth2Swift+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OAuth2Swift+Publishers.swift"; sourceTree = "<group>"; };
 		AA59661624E9F5C900169F5F /* GCKSessionManager+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GCKSessionManager+Publishers.swift"; sourceTree = "<group>"; };
 		AAA689D324D7E37D00D0AA69 /* twitch_channels.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = twitch_channels.json; sourceTree = "<group>"; };
+		AAA79DE724F4D23C00FCC664 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		AAA79DE924F5BE5D00FCC664 /* FailureMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureMessage.swift; sourceTree = "<group>"; };
 		AAAFECC624E6DD5100CD3AA5 /* ProviderGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderGroupViewModel.swift; sourceTree = "<group>"; };
 		AAAFECC824E707E000CD3AA5 /* ProviderGroup+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProviderGroup+Model.swift"; sourceTree = "<group>"; };
 		AAAFECCA24E7326400CD3AA5 /* TwitchStream+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitchStream+Model.swift"; sourceTree = "<group>"; };
@@ -182,11 +186,13 @@
 			path = Combine;
 			sourceTree = "<group>";
 		};
-		AAA1C07724EACCF80061129C /* Representables */ = {
+		AAA79DE624F4D1F200FCC664 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AAA79DE724F4D23C00FCC664 /* Activity.swift */,
+				AAA79DE924F5BE5D00FCC664 /* FailureMessage.swift */,
 			);
-			path = Representables;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		AAAFECDE24E8B84400CD3AA5 /* Publishers */ = {
@@ -261,8 +267,8 @@
 		AADFC80024D2529200A57ED1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AAA1C07724EACCF80061129C /* Representables */,
 				AA044FFB24E4468E0013FAA3 /* ViewModels */,
+				AAA79DE624F4D1F200FCC664 /* Components */,
 				AADFC80A24D2874C00A57ED1 /* Rows */,
 				AAE4EE3C24E0EF0A00BDA4B6 /* ProviderListView.swift */,
 				AA044FF924E440850013FAA3 /* PlatformListView.swift */,
@@ -469,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA79DEA24F5BE5D00FCC664 /* FailureMessage.swift in Sources */,
 				AA04503924E462B50013FAA3 /* TwitchChannel+Model.swift in Sources */,
 				AA044FF624E3B6DA0013FAA3 /* ProviderGroupView.swift in Sources */,
 				AA044FFA24E440860013FAA3 /* PlatformListView.swift in Sources */,
@@ -488,6 +495,7 @@
 				AAE4EE5224E2F57E00BDA4B6 /* PlatformService.swift in Sources */,
 				AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */,
 				AAE4EE3524E0C4C900BDA4B6 /* TwitchService.swift in Sources */,
+				AAA79DE824F4D23C00FCC664 /* Activity.swift in Sources */,
 				AAAFECCB24E7326400CD3AA5 /* TwitchStream+Model.swift in Sources */,
 				AA04504324E479180013FAA3 /* Platform+Model.swift in Sources */,
 				AAAFECCF24E74D7900CD3AA5 /* CastableRow.swift in Sources */,
