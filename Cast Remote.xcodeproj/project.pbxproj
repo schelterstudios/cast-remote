@@ -35,6 +35,9 @@
 		AAAFECDA24E7719400CD3AA5 /* ManagedObject+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECD924E7719400CD3AA5 /* ManagedObject+Model.swift */; };
 		AAAFECDC24E7768900CD3AA5 /* CastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECDB24E7768900CD3AA5 /* CastService.swift */; };
 		AAAFECE024E8B87E00CD3AA5 /* GCKRemoteMediaClient+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFECDF24E8B87D00CD3AA5 /* GCKRemoteMediaClient+Publishers.swift */; };
+		AAC24AF624FB037200FC4EA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AAC24AF524FB037200FC4EA5 /* README.md */; };
+		AAC24AFC24FB1DE800FC4EA5 /* MVVM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AAC24AFA24FB1DE800FC4EA5 /* MVVM.jpeg */; };
+		AAC24AFD24FB1DE800FC4EA5 /* AnyViewModel.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = AAC24AFB24FB1DE800FC4EA5 /* AnyViewModel.jpeg */; };
 		AADFC7E824D21D0500A57ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */; };
 		AADFC7EA24D21D0500A57ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */; };
 		AADFC7EC24D21D0500A57ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFC7EB24D21D0500A57ED1 /* ContentView.swift */; };
@@ -107,6 +110,9 @@
 		AAAFECD924E7719400CD3AA5 /* ManagedObject+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedObject+Model.swift"; sourceTree = "<group>"; };
 		AAAFECDB24E7768900CD3AA5 /* CastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastService.swift; sourceTree = "<group>"; };
 		AAAFECDF24E8B87D00CD3AA5 /* GCKRemoteMediaClient+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GCKRemoteMediaClient+Publishers.swift"; sourceTree = "<group>"; };
+		AAC24AF524FB037200FC4EA5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AAC24AFA24FB1DE800FC4EA5 /* MVVM.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MVVM.jpeg; sourceTree = "<group>"; };
+		AAC24AFB24FB1DE800FC4EA5 /* AnyViewModel.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AnyViewModel.jpeg; sourceTree = "<group>"; };
 		AADFC7E424D21D0500A57ED1 /* Cast Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADFC7E724D21D0500A57ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AADFC7E924D21D0500A57ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -205,9 +211,20 @@
 			path = Publishers;
 			sourceTree = "<group>";
 		};
+		AAC24AF924FB093300FC4EA5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				AAC24AFB24FB1DE800FC4EA5 /* AnyViewModel.jpeg */,
+				AAC24AFA24FB1DE800FC4EA5 /* MVVM.jpeg */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		AADFC7DB24D21D0500A57ED1 = {
 			isa = PBXGroup;
 			children = (
+				AAC24AF924FB093300FC4EA5 /* images */,
+				AAC24AF524FB037200FC4EA5 /* README.md */,
 				AADFC7E624D21D0500A57ED1 /* Cast Remote */,
 				AADFC7E524D21D0500A57ED1 /* Products */,
 				EA1D0767F13A6110E09F4994 /* Pods */,
@@ -401,6 +418,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC24AF624FB037200FC4EA5 /* README.md in Resources */,
+				AAC24AFD24FB1DE800FC4EA5 /* AnyViewModel.jpeg in Resources */,
+				AAC24AFC24FB1DE800FC4EA5 /* MVVM.jpeg in Resources */,
 				AAA689D424D7E37D00D0AA69 /* twitch_channels.json in Resources */,
 				AADFC7F424D21D0900A57ED1 /* LaunchScreen.storyboard in Resources */,
 				AADFC7F124D21D0900A57ED1 /* Preview Assets.xcassets in Resources */,
