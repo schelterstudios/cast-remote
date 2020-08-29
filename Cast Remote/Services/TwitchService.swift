@@ -15,7 +15,6 @@ fileprivate let CLIENT_ID = "n33nlepetq5rw1ilhhqsllj9vcmbxt"
 fileprivate let CLIENT_SECRET = "flh79mbcg9h4a5lf6l70x61imkpbqr"
 fileprivate let KRAKEN = "https://api.twitch.tv/kraken"
 fileprivate let HELIX = "https://api.twitch.tv/helix"
-fileprivate let USER_ID = "39531886"
 
 class TwitchService: PlatformServiceBase {
     
